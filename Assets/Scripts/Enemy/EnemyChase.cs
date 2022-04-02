@@ -10,9 +10,6 @@ public class EnemyChase : MonoBehaviour
     [SerializeField]
     private Transform targetTransform;
 
-    [SerializeField]
-    private float enemySpeed;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +21,6 @@ public class EnemyChase : MonoBehaviour
     {
         Vector3 direction = targetTransform.position - transform.position;
         direction.Normalize();
-        movement.SetDesiredDirection(direction * enemySpeed);
+        movement.SetDesiredDirection(direction);
     }
 }

@@ -23,12 +23,14 @@ public class PersonMovement : MonoBehaviour
 
     public Vector3 ActualVelocity => _rb.velocity;
 
-    public void SetDesiredDirection(Vector3 velocity)
+    public void SetDesiredDirection(Vector3 direction)
     {
-        _move.desiredVelocity = velocity;
+        _move.desiredVelocity = direction * _move.maxSpeed;
+
+        direction.y = 0;
     
-        if (velocity.magnitude > 0)
-            HandleFacingDirection(velocity.normalized);
+        if (direction.magnitude > 0)
+            HandleFacingDirection(direction.normalized);
     }
 
 	void OnValidate () 
