@@ -44,4 +44,28 @@ public class PlayerAnimations : MonoBehaviour
         _anim.ResetTrigger("airJumpTrigger");
         _anim.SetTrigger("airJumpTrigger");
     }
+
+    public void StartDive(float recoverDelay)
+    {
+        _anim.ResetTrigger("diveStart");
+        _anim.SetTrigger("diveStart");
+
+        Invoke(nameof(RecoverFromDive), recoverDelay);
+    }
+
+    public void RecoverFromDive()
+    {
+        _anim.ResetTrigger("diveRecover");
+        _anim.SetTrigger("diveRecover");
+    }
+
+    public void DiveStopEvent()
+    {
+        _playerMove.StopDiving();
+    }
+
+    public void DiveRecoveredEvent()
+    {
+        _playerMove.RecoveredFromDiving();
+    }
 }

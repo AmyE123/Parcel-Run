@@ -13,9 +13,14 @@ public class PersonMovement : MonoBehaviour
 	[SerializeField] Collider _collider;
     [SerializeField] PlayerAnimations _anim;
     
+    [SerializeField] float _diveSpeed;
+    [SerializeField] float _diveRecoverTime;
+
     Rigidbody _rb;
 
 	public bool IsGrounded => _ground.groundContactCount > 0;
+
+    public bool IsDiving => _isDiving;
 
     public Vector3 DesiredVelocity => _move.desiredVelocity;
 
@@ -23,8 +28,44 @@ public class PersonMovement : MonoBehaviour
 
     public Vector3 ActualVelocity => _rb.velocity;
 
+    bool _isDiving;
+    float _currentDiveSpeed;
+
+    public void StartDive(Vector3 targetPosition)
+    {
+        if (_isDiving)
+            return;
+
+        if (targetPosition.magnitude > 0)
+        {
+            Vector3 dir = (targetPosition - transform.position);
+            dir.y = 0;
+            dir.Normalize();
+
+            transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+        }
+            
+
+        _anim.StartDive(_diveRecoverTime);
+        _isDiving = true;
+        _currentDiveSpeed = _diveSpeed;
+    }
+
+    public void StopDiving()
+    {
+        _currentDiveSpeed = 0;
+    }
+
+    public void RecoveredFromDiving()
+    {
+        _isDiving = false;
+    }
+
     public void SetDesiredDirection(Vector3 direction)
     {
+        if (_isDiving)
+            return;
+
         _move.desiredVelocity = direction * _move.maxSpeed;
 
         direction.y = 0;
@@ -35,6 +76,9 @@ public class PersonMovement : MonoBehaviour
 
     public void SetJumpRequested(bool isRequested)
     {
+        if (_isDiving)
+            return;
+
         _jump.isRequested |= isRequested;
     }
 
@@ -126,6 +170,14 @@ public class PersonMovement : MonoBehaviour
 
     void AdjustVelocity () 
     {
+        if (_isDiving)
+        {
+            float yVel = _move.velocity.y;
+            _move.velocity = transform.forward * _currentDiveSpeed;
+            _move.velocity.y = yVel;
+            return;
+        }
+
 		Vector3 xAxis = ProjectOnContactPlane(Vector3.right);
 		Vector3 zAxis = ProjectOnContactPlane(Vector3.forward);
 

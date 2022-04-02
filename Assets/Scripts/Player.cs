@@ -14,12 +14,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _thrownPackagePrefab;
 
+    [SerializeField]
+    private GameObject _uiPrefab;
+
     PersonMovement _movement;
     CameraFollow _cameraFollow;
 
     private bool _hasPackage;
     private DeliveryHouse _currentDestination;
     private bool _canThrowItem;
+
+    public bool CanThrowItem => _canThrowItem;
 
     public bool CanReceivePackage() => _hasPackage == false;
 
@@ -34,6 +39,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _movement = GetComponent<PersonMovement>();
+        W2C.InstantiateAs<PlayerUI>(_uiPrefab).SetPlayer(this);
     }
 
     // Update is called once per frame

@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyCalculatePath : MonoBehaviour
 {
-    public Transform target;
     public PersonMovement movement;
     private ActivePath _currentPath;
 
@@ -22,6 +21,8 @@ public class EnemyCalculatePath : MonoBehaviour
         private int NextPointIdx => Mathf.Clamp(_nextPoint, 0, points.Length - 1);
 
         private Vector3 NextPoint => points[NextPointIdx];
+
+        public Vector3 Destination => points[points.Length-1];
 
         public ActivePath(NavMeshPath path)
         {
@@ -68,18 +69,31 @@ public class EnemyCalculatePath : MonoBehaviour
         }
     }
 
-    public bool HasEnemyCaughtPlayer()
+    public void ClearPath()
     {
-        if (_currentPath != null && target != null)
-        {
-            var distanceBetween = Vector3.Distance(_currentPath.currentPosition, target.position);
+        _currentPath = null;
+    }
 
-            if (distanceBetween < 1.5f)
-            {
-                return true;
-            }
-        }
-        return false;
+    public bool ChasePlayer(Vector3 position)
+    {
+        if (_currentPath == null)
+            GeneratePathToPoint(position);
+
+        if (_currentPath == null)
+            return false;
+
+        Vector3 currentDestination = _currentPath.Destination;
+
+        // If the path has become stale, regenerate it
+        if (Vector3.Distance(currentDestination, position) > 1)
+            GeneratePathToPoint(position);
+
+        if (_currentPath == null)
+            return false;
+
+        
+        MoveAlongPath();
+        return true;
     }
 
     public void GeneratePathToPoint(Vector3 point)
@@ -94,35 +108,17 @@ public class EnemyCalculatePath : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        InvokeRepeating("EnemyAdvanceMovement", 0f, 1f);
-
-        if (target == null)
-        {
-            target = GameObject.Find("Player").transform;
-        }
-    }
-
-    void Update()
+    void MoveAlongPath()
     {       
-        if (_currentPath != null)
+        Vector3 direction = _currentPath.currentPosition - transform.position;
+        direction.y = 0;
+
+        movement.SetDesiredDirection(direction.normalized);
+
+        if (direction.magnitude < 1.25f)
         {
-            Vector3 direction = _currentPath.currentPosition - transform.position;
-            direction.y = 0;
-
-            movement.SetDesiredDirection(direction.normalized);
-
-            if (direction.magnitude < 1.25f)
-            {
-                _currentPath.Advance(Time.deltaTime * movement.MaxSpeed);
-            }
-            _currentPath.DrawPath();
+            _currentPath.Advance(Time.deltaTime * movement.MaxSpeed);
         }
-    }
-
-    void EnemyAdvanceMovement()
-    {        
-        GeneratePathToPoint(target.position);
+        _currentPath.DrawPath();
     }
 }
