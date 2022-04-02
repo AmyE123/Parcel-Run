@@ -5,40 +5,32 @@ using MovementInfo;
     
 public class MopedMove : MonoBehaviour 
 {
-    [SerializeField]
-    Transform _frontWheel;
-
-    [SerializeField]
-    Transform _backWheel;
-
+    [SerializeField] JumpInfo _jump;
     [SerializeField] GroundInfo _ground;
+	[SerializeField] MoveInfo _move;
 
-    [Range(0f, 100f), SerializeField] private float maxAcceleration = 10f;
-    [Range(0f, 100f), SerializeField] private float maxSpeed = 10f;
-    [Range(0f, 100f), SerializeField] private float maxTurnSpeed = 10f;
-
-    [SerializeField] Transform _frontWheelPosition;
-    [SerializeField] Transform _backWheelPosition;
-    [SerializeField] float _wheelRadius;
+    [Space(8)]
+	[SerializeField] Collider _collider;
+    [SerializeField] bool isPlayer;
     
-    private Vector3 velocity;
-    private float angularSpeed;
-    private float desiredSpeed;
-    private float desiredTurn;
-
-    private bool _isFrontGrounded;
-    private bool _isBackGrounded;
-
-
-    private CameraFollow _cameraFollow;
-  
+    CameraFollow _cameraFollow;
     Rigidbody _rb;
 
 	public bool IsGrounded => _ground.groundContactCount > 0;
 
-    public float DesiredVelocity => desiredSpeed;
+    public Vector3 DesiredVelocity => _move.desiredVelocity;
 
     public Vector3 ActualVelocity => _rb.velocity;
+
+    public void SetDesiredDirection(Vector3 direction)
+    {
+        _move.desiredVelocity = direction * _move.maxSpeed;
+
+        direction.y = 0;
+    
+        if (direction.magnitude > 0)
+            HandleFacingDirection(direction.normalized);
+    }
 
 	void OnValidate () 
     {
@@ -63,7 +55,9 @@ public class MopedMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandlePlayerInput();
+        if (isPlayer)
+            HandlePlayerInput();
+        
     }
 
     void HandlePlayerInput()
@@ -77,8 +71,19 @@ public class MopedMove : MonoBehaviour
         Vector3 xComponent = playerInput.x * _cameraFollow.CameraRight;
         Vector3 yComponent = playerInput.y * _cameraFollow.CameraForward;
 
-        desiredSpeed = playerInput.y * maxSpeed;
-        desiredTurn = playerInput.x * maxTurnSpeed;
+        _move.desiredVelocity = (xComponent + yComponent) * _move.maxSpeed;
+        _jump.isRequested |= Input.GetButtonDown("Jump");
+
+        HandleFacingDirection(xComponent + yComponent);
+    }
+
+    void HandleFacingDirection(Vector3 desiredDirection)
+    {
+        if (desiredDirection.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 19);
+        }
     }
 
     void FixedUpdate()
@@ -86,30 +91,49 @@ public class MopedMove : MonoBehaviour
         UpdateState();
         AdjustVelocity();
 
-        _rb.velocity = velocity;
-        ClearState();
+        if (_jump.isRequested) 
+			Jump();
 
-        if (Physics.Raycast(_rb.position, Vector3.down, out RaycastHit hit, _ground.probeDistance)) 
-        {
-            Quaternion targetRot = Quaternion.LookRotation(transform.forward, hit.normal);
-            transform.rotation = targetRot;
-		}
+        _rb.velocity = _move.velocity;
+        ClearState();
     }
 
-    private void CheckWheelsGrounded()
-    {
-        Transform fw = _frontWheelPosition;
-        Transform bw = _backWheelPosition;
-        _isFrontGrounded = _isBackGrounded = false;
 
-        if (Physics.Raycast(fw.position, -fw.up, out RaycastHit hitFront, _wheelRadius + 0.05f))
+    void Jump()
+    {
+        _jump.isRequested = false;
+
+        float jumpSpeed = _jump.Speed;
+
+        if (IsGrounded)
         {
-			_isFrontGrounded = true;
-		}
-        if (Physics.Raycast(bw.position, -bw.up, out RaycastHit hitBack, _wheelRadius + 0.05f))
+            float alignedSpeed = Vector3.Dot(_move.velocity, _ground.contactNormal);
+            if (alignedSpeed > 0f)
+            {
+                jumpSpeed = Mathf.Max(jumpSpeed - alignedSpeed, 0f);
+            }
+
+            _move.velocity += _ground.contactNormal  * jumpSpeed;
+            SetHasJump(true);
+        }
+        else if (_jump.hasExtraJump)
         {
-			_isBackGrounded = true;
-		}
+            float boostAlignment = Vector3.Dot(ActualVelocity.normalized, transform.forward);
+            boostAlignment = Mathf.Clamp01(boostAlignment);
+
+            _move.velocity *= boostAlignment;
+
+            _jump.hasExtraJump = false;
+            _move.velocity += transform.forward * _jump.extraJumpSpeed;
+            _move.velocity += Vector3.up * _jump.extraJumpLift;
+        }
+
+        _jump.stepsSinceLastJump = 0;
+    }
+
+    void SetHasJump(bool hasit)
+    {
+        _jump.hasExtraJump = hasit;
     }
 
     Vector3 ProjectOnContactPlane (Vector3 vector) 
@@ -122,36 +146,33 @@ public class MopedMove : MonoBehaviour
 		Vector3 xAxis = ProjectOnContactPlane(Vector3.right);
 		Vector3 zAxis = ProjectOnContactPlane(Vector3.forward);
 
-        float currentX = Vector3.Dot(velocity, xAxis);
-		float currentZ = Vector3.Dot(velocity, zAxis);
+        float currentX = Vector3.Dot(_move.velocity, xAxis);
+		float currentZ = Vector3.Dot(_move.velocity, zAxis);
 
-		float acceleration = _isBackGrounded ? maxAcceleration : maxAcceleration;
+		float acceleration = IsGrounded ? _move.maxAcceleration : _move.maxAirAcceleration;
 		float maxSpeedChange = acceleration * Time.deltaTime;
 
         Vector2 currentVel = new Vector2(currentX, currentZ);
-        Vector2 desiredVel = new Vector2(transform.forward.x, transform.forward.z)  * desiredSpeed;
+        Vector2 desiredVel = new Vector2(_move.desiredVelocity.x, _move.desiredVelocity.z);
 
         Vector2 newVel = Vector2.MoveTowards(currentVel, desiredVel, maxSpeedChange);
 
-        velocity += xAxis * (newVel.x - currentX) + zAxis * (newVel.y - currentZ);
-
-        Vector3 angVel = _rb.angularVelocity;
-        angVel.y = desiredTurn;
-
-        _rb.angularVelocity = angVel;
+        _move.velocity += xAxis * (newVel.x - currentX) + zAxis * (newVel.y - currentZ);
 	}
 
     void UpdateState () 
     {
         _ground.stepsSinceLastGrounded += 1;
-		velocity = _rb.velocity;
+        _jump.stepsSinceLastJump += 1;
+		_move.velocity = _rb.velocity;
 
-        CheckWheelsGrounded();
-
-		if (IsGrounded || CheckSteepContacts()) 
+		if (IsGrounded || SnapToGround() || CheckSteepContacts()) 
         {
             _ground.stepsSinceLastGrounded = 0;
             _rb.useGravity = false;
+
+            if (_jump.stepsSinceLastJump > 2)
+                SetHasJump(false);
 
             if (_ground.groundContactCount > 1) {
 				_ground.contactNormal.Normalize();
@@ -162,6 +183,31 @@ public class MopedMove : MonoBehaviour
             _rb.useGravity = true;
 			_ground.contactNormal = Vector3.up;
 		}
+	}
+
+    bool SnapToGround () {
+		if (_ground.stepsSinceLastGrounded > 1 || _jump.stepsSinceLastJump <= 2) {
+			return false;
+		}
+		float speed = _move.velocity.magnitude;
+		if (speed > _ground.maxSnapSpeed) {
+			return false;
+		}
+
+        if (!Physics.Raycast(_rb.position, Vector3.down, out RaycastHit hit, _ground.probeDistance)) {
+			return false;
+		}
+
+        if (hit.normal.y < _ground.minGroundDotProduct) {
+			return false;
+		}
+
+		_ground.contactNormal = hit.normal;
+		float dot = Vector3.Dot(_move.velocity, hit.normal);
+		if (dot > 0f) {
+			_move.velocity = (_move.velocity - hit.normal * dot).normalized * speed;
+		}
+		return true;
 	}
 
     void OnCollisionStay (Collision collision) => EvaluateCollision(collision);
