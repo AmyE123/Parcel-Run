@@ -12,9 +12,7 @@ public class PersonMovement : MonoBehaviour
     [Space(8)]
 	[SerializeField] Collider _collider;
     [SerializeField] PlayerAnimations _anim;
-    [SerializeField] bool isPlayer;
     
-    CameraFollow _cameraFollow;
     Rigidbody _rb;
 
 	public bool IsGrounded => _ground.groundContactCount > 0;
@@ -33,6 +31,11 @@ public class PersonMovement : MonoBehaviour
     
         if (direction.magnitude > 0)
             HandleFacingDirection(direction.normalized);
+    }
+
+    public void SetJumpRequested(bool isRequested)
+    {
+        _jump.isRequested |= isRequested;
     }
 
 	void OnValidate () 
@@ -54,31 +57,6 @@ public class PersonMovement : MonoBehaviour
         _ground.wallContactCount = 0;
         _ground.wallNormal = Vector3.zero;
 	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isPlayer)
-            HandlePlayerInput();
-        
-    }
-
-    void HandlePlayerInput()
-    {
-        if (_cameraFollow == null)
-            _cameraFollow = FindObjectOfType<CameraFollow>();
-
-        Vector2 playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        playerInput = Vector2.ClampMagnitude(playerInput, 1);
-
-        Vector3 xComponent = playerInput.x * _cameraFollow.CameraRight;
-        Vector3 yComponent = playerInput.y * _cameraFollow.CameraForward;
-
-        _move.desiredVelocity = (xComponent + yComponent) * _move.maxSpeed;
-        _jump.isRequested |= Input.GetButtonDown("Jump");
-
-        HandleFacingDirection(xComponent + yComponent);
-    }
 
     void HandleFacingDirection(Vector3 desiredDirection)
     {
