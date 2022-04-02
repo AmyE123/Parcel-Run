@@ -5,8 +5,30 @@ using UnityEngine;
 [RequireComponent(typeof(PersonMovement))]
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private float _throwDistance;
+
+    [SerializeField]
+    private Transform _packageVisuals;
+
+    [SerializeField]
+    private GameObject _thrownPackagePrefab;
+
     PersonMovement _movement;
     CameraFollow _cameraFollow;
+
+    private bool _hasPackage;
+    private DeliveryHouse _currentDestination;
+    private bool _canThrowItem;
+
+    public bool CanReceivePackage() => _hasPackage == false;
+
+    public void TakePackage(DeliveryHouse destination)
+    {
+        _hasPackage = true;
+        _currentDestination = destination;
+        _packageVisuals.gameObject.SetActive(true);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +40,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         HandlePlayerInput();
+        DetermineDistanceFromHouse();
     }
 
     void HandlePlayerInput()
@@ -33,5 +56,50 @@ public class Player : MonoBehaviour
 
         _movement.SetDesiredDirection(xComponent + yComponent);
         _movement.SetJumpRequested(Input.GetButtonDown("Jump"));
+
+        if (Input.GetKeyDown(KeyCode.E))
+            ThrowPackage();
+
+    }
+
+    void ThrowPackage()
+    {
+        if (_canThrowItem == false)
+            return;
+
+        _hasPackage = false;
+        _canThrowItem = false;
+        _packageVisuals.gameObject.SetActive(false);
+
+        GameObject projectile = Instantiate(_thrownPackagePrefab);
+        projectile.GetComponent<ThrownPackage>().Throw(transform.position, _currentDestination);
+
+        _currentDestination = null;
+    }
+
+    void DetermineDistanceFromHouse()
+    {
+        _canThrowItem = false;
+
+        if (_currentDestination != null)
+        {
+            Vector3 vecToTarget = _currentDestination.DoorPosition - transform.position;
+
+            if (vecToTarget.magnitude <= _throwDistance)
+            {
+                if (Physics.Raycast(transform.position, vecToTarget.normalized, out RaycastHit hit, vecToTarget.magnitude))
+                {
+                    if (_currentDestination.IsThisYourDoor(hit.transform))
+                    {
+                        _canThrowItem = true;
+                        Debug.DrawLine(transform.position, hit.point, Color.green);
+                    }
+                    else
+                    {
+                        Debug.DrawLine(transform.position, hit.point, Color.red);
+                    }
+                }
+            }
+        }
     }
 }
