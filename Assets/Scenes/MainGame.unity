@@ -2332,6 +2332,17 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
+--- !u!114 &1721375258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7996635678159963006, guid: 340bb27224b0a4241a56a91cc837c628, type: 3}
+  m_PrefabInstance: {fileID: 2109392135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba846d96dc2d40f0aa6e2878bf3b52c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2109392135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2430,7 +2441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3809090175524514849, guid: f199241ec18844975b59a2693cf5723a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 180
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 3809090175524514849, guid: f199241ec18844975b59a2693cf5723a, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2484,6 +2495,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4963822329119658395, guid: f199241ec18844975b59a2693cf5723a, type: 3}
+      propertyPath: _movement
+      value: 
+      objectReference: {fileID: 1721375258}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f199241ec18844975b59a2693cf5723a, type: 3}
 --- !u!224 &5937253424525051762 stripped

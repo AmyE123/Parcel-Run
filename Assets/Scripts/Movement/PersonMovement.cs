@@ -21,6 +21,8 @@ public class PersonMovement : MonoBehaviour
 
     public Vector3 DesiredVelocity => _move.desiredVelocity;
 
+    public Vector3 ActualVelocity => _rb.velocity;
+
     public void SetDesiredDirection(Vector3 velocity)
     {
         _move.desiredVelocity = velocity;
@@ -61,7 +63,7 @@ public class PersonMovement : MonoBehaviour
     {
         if (_cameraFollow == null)
             _cameraFollow = FindObjectOfType<CameraFollow>();
-            
+
         Vector2 playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         playerInput = Vector2.ClampMagnitude(playerInput, 1);
 
