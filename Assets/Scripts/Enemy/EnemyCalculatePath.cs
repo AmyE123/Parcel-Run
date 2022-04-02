@@ -70,11 +70,14 @@ public class EnemyCalculatePath : MonoBehaviour
 
     public bool HasEnemyCaughtPlayer()
     {
-        var distanceBetween = Vector3.Distance(_currentPath.currentPosition, target.position);
-
-        if (distanceBetween < 1.5f)
+        if (_currentPath != null && target != null)
         {
-            return true;
+            var distanceBetween = Vector3.Distance(_currentPath.currentPosition, target.position);
+
+            if (distanceBetween < 1.5f)
+            {
+                return true;
+            }
         }
         return false;
     }
