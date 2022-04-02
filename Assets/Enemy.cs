@@ -133,10 +133,10 @@ public class Enemy : MonoBehaviour
     {
         if (_nearbyPlayer != null)   
             return;
-
+        
         _nearbyPlayer = player;
 
-        if (HasLineOfSightToPlayer())
+        if (_inChaseMode == false && HasLineOfSightToPlayer())
         {
             _inChaseMode = true;
             SpawnExclaimation();
