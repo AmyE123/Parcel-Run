@@ -5,8 +5,14 @@ using UnityEngine;
 public class EnemyChase : MonoBehaviour
 {
     [SerializeField]
-    private PlayerMove _player;
-    
+    private PlayerMove movement;
+
+    [SerializeField]
+    private Transform targetTransform;
+
+    [SerializeField]
+    private float enemySpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +22,8 @@ public class EnemyChase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 direction = targetTransform.position - transform.position;
+        direction.Normalize();
+        movement.SetDesiredDirection(direction * enemySpeed);
     }
 }

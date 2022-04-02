@@ -56,12 +56,18 @@ public class PlayerMove : MonoBehaviour
 	[SerializeField] Collider _collider;
     [SerializeField] PlayerAnimations _anim;
     [SerializeField] Transform _cameraTransform;
+    [SerializeField] bool isPlayer;
     
     Rigidbody _rb;
 
 	public bool IsGrounded => _ground.groundContactCount > 0;
 
     bool OnWall => _ground.wallContactCount > 0;
+
+    public void SetDesiredDirection(Vector3 velocity)
+    {
+        _move.desiredVelocity = velocity;
+    }
 
 	void OnValidate () 
     {
@@ -98,16 +104,23 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        playerInput = Vector2.ClampMagnitude(playerInput, 1);
+        if (isPlayer)
+        {
+            Vector2 playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            playerInput = Vector2.ClampMagnitude(playerInput, 1);
 
-        Vector3 xComponent = playerInput.x * CameraRight;
-        Vector3 yComponent = playerInput.y * CameraForward;
+            Vector3 xComponent = playerInput.x * CameraRight;
+            Vector3 yComponent = playerInput.y * CameraForward;
 
-        _move.desiredVelocity = (xComponent + yComponent) * _move.maxSpeed;
-		_jump.isRequested |= Input.GetButtonDown("Jump");
+            _move.desiredVelocity = (xComponent + yComponent) * _move.maxSpeed;
+            _jump.isRequested |= Input.GetButtonDown("Jump");
 
-        HandleFacingDirection(xComponent + yComponent);
+            HandleFacingDirection(xComponent + yComponent);
+        }
+        else 
+        {
+            
+        }
     }
 
     void HandleFacingDirection(Vector3 desiredDirection)
