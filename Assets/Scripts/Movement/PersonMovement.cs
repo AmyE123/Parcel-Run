@@ -19,6 +19,8 @@ public class PersonMovement : MonoBehaviour
 
     public Vector3 DesiredVelocity => _move.desiredVelocity;
 
+    public float MaxSpeed => _move.maxSpeed;
+
     public Vector3 ActualVelocity => _rb.velocity;
 
     public void SetDesiredDirection(Vector3 direction)

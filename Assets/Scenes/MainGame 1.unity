@@ -2490,10 +2490,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jump:
     height: 2
-    wallJumpPower: 2
     extraJumpSpeed: 10
     extraJumpLift: 2
-    maxAirJumps: 0
     hasExtraJump: 0
     stepsSinceLastJump: 0
     isRequested: 0
@@ -2509,13 +2507,14 @@ MonoBehaviour:
     wallContactCount: 0
   _move:
     maxAcceleration: 8
+    maxDecceleration: 10
     maxAirAcceleration: 2
+    maxAirDecceleration: 1
     maxSpeed: 8
     velocity: {x: 0, y: 0, z: 0}
     desiredVelocity: {x: 0, y: 0, z: 0}
   _collider: {fileID: 728204597163552960}
   _anim: {fileID: 728204597305021050}
-  _cameraTransform: {fileID: 1088119636}
   isPlayer: 0
 --- !u!1 &728204597163552962
 GameObject:
@@ -2531,8 +2530,8 @@ GameObject:
   - component: {fileID: 728204597163552960}
   - component: {fileID: 728204597163552961}
   - component: {fileID: 728204597163552964}
-  - component: {fileID: 728204597163553019}
   - component: {fileID: 728204597163553020}
+  - component: {fileID: 728204597163553019}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
@@ -2648,9 +2647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c137972d5a7ac35409e0b2af8499b1f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 121112164}
   movement: {fileID: 728204597163552961}
-  targetTransform: {fileID: 121112164}
-  enemySpeed: 2
 --- !u!4 &728204597305020996
 Transform:
   m_ObjectHideFlags: 0
