@@ -7,54 +7,7 @@ public class EnemyCalculatePath : MonoBehaviour
 {
     public Transform target;
     public PersonMovement movement;
-
     private ActivePath _currentPath;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        InvokeRepeating("EnemyAdvanceMovement", 0f, 1f);
-
-        if (target == null)
-        {
-            target = GameObject.Find("Player").transform;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (_currentPath != null)
-        {
-            Vector3 direction = _currentPath.currentPosition - transform.position;
-            direction.y = 0;
-
-            movement.SetDesiredDirection(direction.normalized);
-
-            if (direction.magnitude < 1.25f)
-            {
-                _currentPath.Advance(Time.deltaTime * movement.MaxSpeed);
-            }
-            _currentPath.DrawPath();
-        }
-    }
-
-    void EnemyAdvanceMovement()
-    {
-        GeneratePathToPoint(target.position);
-    }
-
-    public void GeneratePathToPoint(Vector3 point)
-    {
-        NavMeshPath path = new NavMeshPath();
-        NavMesh.CalculatePath(transform.position, point, NavMesh.AllAreas, path);
-
-        if (path != null && path.corners.Length > 0)
-        {
-            _currentPath = new ActivePath(path);
-            _currentPath.Advance(1f);
-        }
-    }
 
     public class ActivePath
     {
@@ -113,5 +66,60 @@ public class EnemyCalculatePath : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public bool HasEnemyCaughtPlayer()
+    {
+        var distanceBetween = Vector3.Distance(_currentPath.currentPosition, target.position);
+
+        if (distanceBetween < 1.5f)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void GeneratePathToPoint(Vector3 point)
+    {
+        NavMeshPath path = new NavMeshPath();
+        NavMesh.CalculatePath(transform.position, point, NavMesh.AllAreas, path);
+
+        if (path != null && path.corners.Length > 0)
+        {
+            _currentPath = new ActivePath(path);
+            _currentPath.Advance(1f);
+        }
+    }
+
+    void Start()
+    {
+        InvokeRepeating("EnemyAdvanceMovement", 0f, 1f);
+
+        if (target == null)
+        {
+            target = GameObject.Find("Player").transform;
+        }
+    }
+
+    void Update()
+    {       
+        if (_currentPath != null)
+        {
+            Vector3 direction = _currentPath.currentPosition - transform.position;
+            direction.y = 0;
+
+            movement.SetDesiredDirection(direction.normalized);
+
+            if (direction.magnitude < 1.25f)
+            {
+                _currentPath.Advance(Time.deltaTime * movement.MaxSpeed);
+            }
+            _currentPath.DrawPath();
+        }
+    }
+
+    void EnemyAdvanceMovement()
+    {        
+        GeneratePathToPoint(target.position);
     }
 }

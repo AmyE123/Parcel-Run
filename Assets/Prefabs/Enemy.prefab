@@ -710,6 +710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8146629885039606460}
+  - component: {fileID: 3423056142828797842}
   - component: {fileID: 2553810698044106026}
   - component: {fileID: 8146629885039606456}
   - component: {fileID: 8146629885039606402}
@@ -738,6 +739,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3423056142828797842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8146629885039606459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aff5af62d069b340aad28757815ff4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  movement: {fileID: 8146629885039606456}
+  enemyCalculatePath: {fileID: 2553810698044106026}
 --- !u!114 &2553810698044106026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,6 +768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   movement: {fileID: 8146629885039606456}
+  enemyCalculatePath: {fileID: 2553810698044106026}
 --- !u!114 &8146629885039606456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,7 +808,6 @@ MonoBehaviour:
     desiredVelocity: {x: 0, y: 0, z: 0}
   _collider: {fileID: 8146629885039606457}
   _anim: {fileID: 8146629884895860739}
-  isPlayer: 0
 --- !u!114 &8146629885039606402
 MonoBehaviour:
   m_ObjectHideFlags: 0
