@@ -750,8 +750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c137972d5a7ac35409e0b2af8499b1f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   movement: {fileID: 8146629885039606456}
-  targetTransform: {fileID: 0}
 --- !u!114 &8146629885039606456
 MonoBehaviour:
   m_ObjectHideFlags: 0
