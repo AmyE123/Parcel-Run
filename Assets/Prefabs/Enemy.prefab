@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 878898849159907223}
   - component: {fileID: 3650866111500432268}
   - component: {fileID: 830470542519508368}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: DetectionField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,11 +811,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aff5af62d069b340aad28757815ff4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chasingPlayer: {fileID: 0}
+  _nearbyPlayer: {fileID: 0}
   _pathCalculator: {fileID: 2553810698044106026}
   _movement: {fileID: 8146629885039606456}
   _diveDistance: 3
+  _visionRange: 18
   _exclaimPrefab: {fileID: 3948252512437482619, guid: 23549afd80f9e443a8a50e64dfd37adc, type: 3}
+  _questionPrefab: {fileID: 3948252512437482619, guid: 1ca096979433d488d87dce82f598adaf, type: 3}
 --- !u!114 &2553810698044106026
 MonoBehaviour:
   m_ObjectHideFlags: 0

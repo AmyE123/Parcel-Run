@@ -12,4 +12,10 @@ public class PlayerDetectionField : MonoBehaviour
         if (other.tag == "Player")
             _enemy.PlayerSeen(other.GetComponent<Player>());
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+            _enemy.PlayerLeft(other.GetComponent<Player>());
+    }
 }

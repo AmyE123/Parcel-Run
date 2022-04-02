@@ -33,7 +33,7 @@ public class EnemyCalculatePath : MonoBehaviour
         public void DrawPath()
         {
             for (int i = 0; i < points.Length - 1; i++)
-                Debug.DrawLine(points[i], points[i + 1], Color.blue);
+                Debug.DrawLine(points[i], points[i + 1], Color.gray);
 
             Debug.DrawLine(currentPosition, currentPosition + Vector3.up, Color.red);
         }
@@ -74,6 +74,14 @@ public class EnemyCalculatePath : MonoBehaviour
         _currentPath = null;
     }
 
+    public bool ReachedEndOfPath()
+    {
+        if (_currentPath == null)
+            return false;
+            
+        return _currentPath.IsComplete;
+    }
+
     public bool ChasePlayer(Vector3 position)
     {
         if (_currentPath == null)
@@ -85,8 +93,10 @@ public class EnemyCalculatePath : MonoBehaviour
         Vector3 currentDestination = _currentPath.Destination;
 
         // If the path has become stale, regenerate it
-        if (Vector3.Distance(currentDestination, position) > 1)
+        if (Vector3.Distance(currentDestination, position) > 2.5f)
+        {
             GeneratePathToPoint(position);
+        }
 
         if (_currentPath == null)
             return false;
@@ -98,6 +108,7 @@ public class EnemyCalculatePath : MonoBehaviour
 
     public void GeneratePathToPoint(Vector3 point)
     {
+        Debug.Log("Generating path!");
         NavMeshPath path = new NavMeshPath();
         NavMesh.CalculatePath(transform.position, point, NavMesh.AllAreas, path);
 
