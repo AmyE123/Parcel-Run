@@ -108,7 +108,6 @@ public class EnemyCalculatePath : MonoBehaviour
 
     public void GeneratePathToPoint(Vector3 point)
     {
-        Debug.Log("Generating path!");
         NavMeshPath path = new NavMeshPath();
         NavMesh.CalculatePath(transform.position, point, NavMesh.AllAreas, path);
 

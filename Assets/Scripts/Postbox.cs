@@ -41,12 +41,10 @@ public class Postbox : MonoBehaviour
 
             if (_takenSpawnPoints.Contains(_spawnPoints[randomIndex]))
                 continue;
-            
-            Debug.Log($"Spawning something in slot {randomIndex}");
-            
+                        
             GameObject newObj = Instantiate(_packagePrefab, _spawnPoints[randomIndex].position, Quaternion.identity);
             PackagePickup pickup = newObj.GetComponent<PackagePickup>();
-            
+
             pickup.SetHouse(destination);
             _takenSpawnPoints.Add(_spawnPoints[randomIndex]);
             pickup.OnPickup = () => OnPackagePickedUp(_spawnPoints[randomIndex]);
@@ -60,7 +58,6 @@ public class Postbox : MonoBehaviour
         if (_takenSpawnPoints.Contains(spawnPoint))
         {
             _takenSpawnPoints.Remove(spawnPoint);
-            Debug.Log($"{spawnPoint.name} is now free!");
         }
     }
 }
