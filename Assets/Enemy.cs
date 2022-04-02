@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _diveDistance;
 
+    [SerializeField]
+    private GameObject _exclaimPrefab;
+
     private Vector3 _playerLastSeen;
 
     void Start()
@@ -59,6 +62,8 @@ public class Enemy : MonoBehaviour
     {
         if (_chasingPlayer != null)   
             return;
+
+        W2C.InstantiateAs<IconBurst>(_exclaimPrefab).Init(transform.position + Vector3.up);
 
         _chasingPlayer = player;
     }

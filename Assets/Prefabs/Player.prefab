@@ -167,6 +167,7 @@ MonoBehaviour:
   _throwDistance: 10
   _packageVisuals: {fileID: 5150431782181728352}
   _thrownPackagePrefab: {fileID: 3323623350820134456, guid: f115afbed36e24240b19151728f10f9d, type: 3}
+  _uiPrefab: {fileID: 4812734773870789216, guid: dfc62fb91bf164734a91a96e8f5bdf46, type: 3}
 --- !u!114 &7996635678159963006
 MonoBehaviour:
   m_ObjectHideFlags: 0
