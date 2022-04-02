@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyChase : MonoBehaviour
 {
     [SerializeField]
-    private PlayerMove movement;
+    private PersonMovement movement;
 
     [SerializeField]
     private Transform targetTransform;

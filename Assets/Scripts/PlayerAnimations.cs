@@ -6,7 +6,7 @@ public class PlayerAnimations : MonoBehaviour
 {
     public bool isRunning = false;
     [SerializeField] private Rigidbody _rigidBody;
-    [SerializeField] private PlayerMove _playerMove;
+    [SerializeField] private PersonMovement _playerMove;
     [SerializeField] private AnimationCurve _runMapping;
     [SerializeField] private float _runSpeedMultiplier = 1f;
     private Animator _anim;

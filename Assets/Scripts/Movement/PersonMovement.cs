@@ -1,72 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MovementInfo;
 
-public class PlayerMove : MonoBehaviour
+public class PersonMovement : MonoBehaviour
 {
-    [System.Serializable]
-    public class JumpInfo
-    {
-        [Range(0f, 10f)] public float height = 2f;
-        [Range(0f, 10f)] public float wallJumpPower = 2f;
-        [Range(0f, 100f)] public float extraJumpSpeed = 20f;
-        [Range(0f, 100f)] public float extraJumpLift = 20f;
-        [Range(0f, 5f)] public int maxAirJumps = 0;
-
-        [HideInInspector] public bool hasExtraJump;
-        [HideInInspector] public int stepsSinceLastJump;
-        [HideInInspector] public bool isRequested;
-
-        public float Speed => Mathf.Sqrt(-2f * Physics.gravity.y * height);
-    }
-
-    [System.Serializable]
-    public class GroundInfo
-    {
-        [Range(0f, 90f)] public float maxSlopeAngle = 25f;
-        [Range(0f, 100f)] public float maxSnapSpeed = 100f;
-	    [Min(0f)] public float probeDistance = 1f;
-
-        [HideInInspector] public int stepsSinceLastGrounded;
-        [HideInInspector] public float minGroundDotProduct;
-
-        [HideInInspector] public Vector3 contactNormal;
-        [HideInInspector] public int groundContactCount;
-
-        [HideInInspector] public Vector3 wallNormal;
-        [HideInInspector] public int wallContactCount;
-
-    }
-
-    [System.Serializable]
-    public class MoveInfo
-    {
-        [Range(0f, 100f)] public float maxAcceleration = 10f;
-        [Range(0f, 100f)] public float maxAirAcceleration = 1f;
-        [Range(0f, 100f)] public float maxSpeed = 10f;
-
-        [HideInInspector] public Vector3 velocity;
-        [HideInInspector] public Vector3 desiredVelocity;
-    }
-
-
     [SerializeField] JumpInfo _jump;
     [SerializeField] GroundInfo _ground;
 	[SerializeField] MoveInfo _move;
+
+    [Space(8)]
 	[SerializeField] Collider _collider;
     [SerializeField] PlayerAnimations _anim;
-    [SerializeField] Transform _cameraTransform;
     [SerializeField] bool isPlayer;
     
+    CameraFollow _cameraFollow;
     Rigidbody _rb;
 
 	public bool IsGrounded => _ground.groundContactCount > 0;
 
-    bool OnWall => _ground.wallContactCount > 0;
+    public Vector3 DesiredVelocity => _move.desiredVelocity;
 
     public void SetDesiredDirection(Vector3 velocity)
     {
         _move.desiredVelocity = velocity;
+    
+        if (velocity.magnitude > 0)
+            HandleFacingDirection(velocity.normalized);
     }
 
 	void OnValidate () 
@@ -89,38 +49,29 @@ public class PlayerMove : MonoBehaviour
         _ground.wallNormal = Vector3.zero;
 	}
 
-    Vector3 CameraForward
-    {
-        get
-        {
-            Vector3 fwd = _cameraTransform.forward;
-            fwd.y = 0;
-            return fwd.normalized;
-        }
-    }
-
-    Vector3 CameraRight => _cameraTransform.right;
-
     // Update is called once per frame
     void Update()
     {
         if (isPlayer)
-        {
-            Vector2 playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            playerInput = Vector2.ClampMagnitude(playerInput, 1);
+            HandlePlayerInput();
+        
+    }
 
-            Vector3 xComponent = playerInput.x * CameraRight;
-            Vector3 yComponent = playerInput.y * CameraForward;
-
-            _move.desiredVelocity = (xComponent + yComponent) * _move.maxSpeed;
-            _jump.isRequested |= Input.GetButtonDown("Jump");
-
-            HandleFacingDirection(xComponent + yComponent);
-        }
-        else 
-        {
+    void HandlePlayerInput()
+    {
+        if (_cameraFollow == null)
+            _cameraFollow = FindObjectOfType<CameraFollow>();
             
-        }
+        Vector2 playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        playerInput = Vector2.ClampMagnitude(playerInput, 1);
+
+        Vector3 xComponent = playerInput.x * _cameraFollow.CameraRight;
+        Vector3 yComponent = playerInput.y * _cameraFollow.CameraForward;
+
+        _move.desiredVelocity = (xComponent + yComponent) * _move.maxSpeed;
+        _jump.isRequested |= Input.GetButtonDown("Jump");
+
+        HandleFacingDirection(xComponent + yComponent);
     }
 
     void HandleFacingDirection(Vector3 desiredDirection)
