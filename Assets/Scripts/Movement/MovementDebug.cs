@@ -23,12 +23,10 @@ public class MovementDebug : MonoBehaviour
         public void SetValue(float x, float y)
         {
             Vector2 vec = new Vector2(x, y);
-            float xPercent = x / _scale;
-            float yPercent = y / _scale;
 
             _valueText.text = vec.magnitude.ToString("n3");
 
-            _dot.anchoredPosition = Vector2.ClampMagnitude(vec, 1) * _maxDistance;
+            _dot.anchoredPosition = Vector2.ClampMagnitude(vec / _scale, 1) * _maxDistance;
         }
     }
 
@@ -44,6 +42,9 @@ public class MovementDebug : MonoBehaviour
     [SerializeField]
     private VectorDisplay _actualDisplay;
 
+    [SerializeField]
+    private Text _isGroundedText;
+
     // Update is called once per frame
     void Update()
     {
@@ -54,5 +55,7 @@ public class MovementDebug : MonoBehaviour
 
         _desiredDisplay.SetValue(_movement.DesiredVelocity.x, _movement.DesiredVelocity.z);
         _actualDisplay.SetValue(_movement.ActualVelocity.x, _movement.ActualVelocity.z);
+
+        _isGroundedText.text = _movement.IsGrounded ? "Is Grounded" : "Is Airbourne";
     }
 }

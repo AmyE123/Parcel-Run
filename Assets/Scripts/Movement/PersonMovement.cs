@@ -148,10 +148,12 @@ public class PersonMovement : MonoBehaviour
 		float acceleration = IsGrounded ? _move.maxAcceleration : _move.maxAirAcceleration;
 		float maxSpeedChange = acceleration * Time.deltaTime;
 
-		float newX = Mathf.MoveTowards(currentX, _move.desiredVelocity.x, maxSpeedChange);
-		float newZ = Mathf.MoveTowards(currentZ, _move.desiredVelocity.z, maxSpeedChange);
+        Vector2 currentVel = new Vector2(currentX, currentZ);
+        Vector2 desiredVel = new Vector2(_move.desiredVelocity.x, _move.desiredVelocity.z);
 
-        _move.velocity += xAxis * (newX - currentX) + zAxis * (newZ - currentZ);
+        Vector2 newVel = Vector2.MoveTowards(currentVel, desiredVel, maxSpeedChange);
+
+        _move.velocity += xAxis * (newVel.x - currentX) + zAxis * (newVel.y - currentZ);
 	}
 
     void UpdateState () 
