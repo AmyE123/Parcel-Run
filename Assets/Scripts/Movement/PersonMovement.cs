@@ -172,6 +172,7 @@ public class PersonMovement : MonoBehaviour
 		if (IsGrounded || SnapToGround() || CheckSteepContacts()) 
         {
             _ground.stepsSinceLastGrounded = 0;
+            _rb.useGravity = false;
 
             if (_jump.stepsSinceLastJump > 2)
                 SetHasJump(false);
@@ -182,6 +183,7 @@ public class PersonMovement : MonoBehaviour
 		}
 		else 
         {
+            _rb.useGravity = true;
 			_ground.contactNormal = Vector3.up;
 		}
 	}
