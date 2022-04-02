@@ -13,17 +13,19 @@ public class EnemyCalculatePath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("EnemyAdvanceMovement", 0f, 1f);
+
+        if (target == null)
+        {
+            target = GameObject.Find("Player").transform;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            GeneratePathToPoint(target.position);
-        }
         if (_currentPath != null)
-        {         
+        {
             Vector3 direction = _currentPath.currentPosition - transform.position;
             direction.y = 0;
 
@@ -35,6 +37,11 @@ public class EnemyCalculatePath : MonoBehaviour
             }
             _currentPath.DrawPath();
         }
+    }
+
+    void EnemyAdvanceMovement()
+    {
+        GeneratePathToPoint(target.position);
     }
 
     public void GeneratePathToPoint(Vector3 point)
