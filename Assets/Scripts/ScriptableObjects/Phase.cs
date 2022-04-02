@@ -15,6 +15,10 @@ public class Phase : ScriptableObject
     [Header("Enemy Squad Information")]
     public GameObject enemyPrefab;
 
+    [Tooltip("The number of enemies you want the phase to begin with, leave at 0 if you want them to spawn over time")]
+    public int minEnemyCount;
+
+    [Tooltip("The maximum number of enemies you want the phase to have as it progresses")]
     public int maxEnemyCount;
 
     [Header("Gameplay Phase Information")]
@@ -24,6 +28,9 @@ public class Phase : ScriptableObject
 
     [Tooltip("The minimum time a player has to deliver each parcel")]
     public float minParcelDeliveryTime;
+
+    [Tooltip("The time in seconds before another enemy (of the above type) joins the chase during this phase")]
+    [Range(1, 60)] public float timeBeforeNextPopulation;
 
     [Tooltip("How many parcels a player needs to deliver to get onto the next phase")]
     [Range(1, 20)] public int deliveryCountToPass;
