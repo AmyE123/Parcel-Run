@@ -30,6 +30,7 @@ public class ThrownPackage : MonoBehaviour
 
     private void OnThrowComplete()
     {
+        FindObjectOfType<DeliveryManager>().DeliveryMade();
         _destination.ItemDelivered();
         Destroy(gameObject);
     }

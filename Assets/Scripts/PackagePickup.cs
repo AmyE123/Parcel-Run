@@ -24,6 +24,10 @@ public class PackagePickup : MonoBehaviour
     private Vector3 _startPos;
     private bool _isDestroying;
 
+    public System.Action OnPickup;
+
+    public void SetHouse(DeliveryHouse house) => _targetHouse = house;
+
     void Start()
     {
         _pickupBox.localScale = Vector3.zero;
@@ -56,5 +60,6 @@ public class PackagePickup : MonoBehaviour
 
         player.TakePackage(_targetHouse);
         transform.DOScale(new Vector3(0, 1, 0), 0.5f).SetEase(Ease.InSine).OnComplete(() => Destroy(gameObject));
+        OnPickup?.Invoke();
     }
 }
