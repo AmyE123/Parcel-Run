@@ -120,6 +120,11 @@ public class PersonMovement : MonoBehaviour
         }
         else if (_jump.hasExtraJump)
         {
+            float boostAlignment = Vector3.Dot(ActualVelocity.normalized, transform.forward);
+            boostAlignment = Mathf.Clamp01(boostAlignment);
+
+            _move.velocity *= boostAlignment;
+
             _jump.hasExtraJump = false;
             _move.velocity += transform.forward * _jump.extraJumpSpeed;
             _move.velocity += Vector3.up * _jump.extraJumpLift;
