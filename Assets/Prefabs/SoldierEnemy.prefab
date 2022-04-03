@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 8146629885039606402}
   - component: {fileID: 8146629885039606457}
   - component: {fileID: 8146629885039606461}
+  - component: {fileID: 2641052210795878949}
   m_Layer: 3
   m_Name: SoldierEnemy
   m_TagString: Untagged
@@ -285,6 +286,8 @@ MonoBehaviour:
   _detectZone: {fileID: 830470542519508368}
   _exclaimPrefab: {fileID: 3948252512437482619, guid: 23549afd80f9e443a8a50e64dfd37adc, type: 3}
   _questionPrefab: {fileID: 3948252512437482619, guid: 1ca096979433d488d87dce82f598adaf, type: 3}
+  LineOfSightOverride: 0
+  ChaseModeOverride: 0
   _shootDistance: 8
   _aimTime: 1.5
   _holdTime: 0.5
@@ -292,6 +295,7 @@ MonoBehaviour:
   _gunFrontTransform: {fileID: 1501528594699112425}
   _anim: {fileID: 6732647371288847534}
   _gunAimVisuals: {fileID: 4208759149476813157}
+  _gunDamage: 15
 --- !u!114 &2553810698044106026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +394,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!208 &2641052210795878949
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8146629885039606459}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: -0.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1174213064750349929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -666,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b51e8adaa64416e88773963e0e5cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRunning: 0
+  IsRunning: 0
   _rigidBody: {fileID: 8146629885039606461}
   _playerMove: {fileID: 8146629885039606456}
   _runMapping:

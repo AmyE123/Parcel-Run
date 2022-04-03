@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: 0_StartPhase
   m_EditorClassIdentifier: 
   enemyDrops: []
+  balanceInfo:
+    policeDetectRadius: 10
+    policeVisionRange: 20
+    policeTopSpeed: 5
+    policeAcceleration: 15
+    policeDiveDistance: 3
+    policeDiveSpeed: 8
+    policeDiveRecoveryTime: 1
   deliveryCountToPass: 1
   playerTransport: 0
   cutscenePrefab: {fileID: 0}
