@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     protected float _visionRange = 20f;
 
     [SerializeField]
+    private SphereCollider _detectZone;
+
+    [SerializeField]
     private GameObject _exclaimPrefab;
 
     [SerializeField]
@@ -24,6 +27,16 @@ public class Enemy : MonoBehaviour
 
     protected Vector3 _playerLastSeen;
     protected bool _inChaseMode;
+
+    public virtual void SyncBalanceInfo(Phase.GameBalance info)
+    {
+
+    }
+
+    protected void SetDetectionRadius(float radius)
+    {
+        _detectZone.radius = radius;
+    }
 
     void Start()
     {

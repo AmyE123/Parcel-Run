@@ -282,6 +282,7 @@ MonoBehaviour:
   _pathCalculator: {fileID: 2553810698044106026}
   _movement: {fileID: 8146629885039606456}
   _visionRange: 20
+  _detectZone: {fileID: 830470542519508368}
   _exclaimPrefab: {fileID: 3948252512437482619, guid: 23549afd80f9e443a8a50e64dfd37adc, type: 3}
   _questionPrefab: {fileID: 3948252512437482619, guid: 1ca096979433d488d87dce82f598adaf, type: 3}
   _shootDistance: 8

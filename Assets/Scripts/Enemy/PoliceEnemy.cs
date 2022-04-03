@@ -32,4 +32,14 @@ public class PoliceEnemy : Enemy
         
         return diff.magnitude <= _diveDistance;
     }   
+
+    
+    public override void SyncBalanceInfo(Phase.GameBalance info)
+    {
+        SetDetectionRadius(info.policeDetectRadius);
+        _visionRange = info.policeVisionRange;
+        _movement.SetTopSpeed(info.policeTopSpeed, info.policeAcceleration);
+        _movement.SetDiveSpeeds(info.policeDiveSpeed, info.policeDiveRecoveryTime);
+        _diveDistance = info.policeDiveDistance;
+    }
 }

@@ -40,6 +40,24 @@ public class Phase : ScriptableObject
         }
     }
 
+    [System.Serializable]
+    public class GameBalance
+    {
+        [Header("Police")]
+        [Tooltip("How close can the player get before they're noticed?")]
+        public float policeDetectRadius = 10;
+        [Tooltip("How far can the player be seen for until they lose sight?")]
+        public float policeVisionRange = 20;
+        public float policeTopSpeed = 5;
+        public float policeAcceleration = 15;
+        [Tooltip("How close do they need to be to the player before diving?")]
+        public float policeDiveDistance = 3;
+        [Tooltip("How fast do they move while diving?")]
+        public float policeDiveSpeed = 8;
+        [Tooltip("How long will they wait on the floor after diving?")]
+        public float policeDiveRecoveryTime = 1;
+    }
+
     // [Header("Enemy Squad Information")]
     // public GameObject enemyPrefab;
 
@@ -50,6 +68,7 @@ public class Phase : ScriptableObject
     // public int maxEnemyCount;
 
     public EnemyDrop[] enemyDrops;
+    public GameBalance balanceInfo;
 
     [Header("Gameplay Phase Information")]
     // There is a minimum and a maximum time here so we can randomly generate a time between this range for each parcel in this phase.
