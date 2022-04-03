@@ -24,7 +24,10 @@ public class GameCutscene : MonoBehaviour
 
         v = FindObjectOfType<Volume>();
         v.profile.TryGet(out dov);
-        dov.active = false;
+        dov.focusDistance.value = 12.2f;
+        dov.focalLength.value = 197;
+        dov.aperture.value = 7.3f;
+        //dov.active = false;
     }
 
     // Update is called once per frame
@@ -32,13 +35,17 @@ public class GameCutscene : MonoBehaviour
     {
         yield return new WaitForSeconds(_destroyTime);
 
-        v = FindObjectOfType<Volume>();
-        v.profile.TryGet(out dov);
-        dov.active = true;
-
         FindObjectOfType<CinematicBars>()?.TransitionOut(() => 
         {
             _isPlaying = false;
+
+            v = FindObjectOfType<Volume>();
+            v.profile.TryGet(out dov);
+            dov.focusDistance.value = 30;
+            dov.focalLength.value = 260;
+            dov.aperture.value = 3;
+            //dov.active = true;
+
             Destroy(gameObject);
         });
     }
