@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
 
     public bool CanThrowItem => _canThrowItem;
 
+    public bool HasPackage => _hasPackage;
+
+    public Vector3 CurrentDestination => _currentDestination == null ? Vector3.zero : _currentDestination.DoorPosition;
+
     public bool CanReceivePackage() => _hasPackage == false;
 
     public void TakePackage(DeliveryHouse destination)
