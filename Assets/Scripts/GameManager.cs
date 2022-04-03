@@ -70,6 +70,11 @@ public class GameManager : MonoBehaviour
             return;
 
         CheckForEnemiesToSpawn();
+
+        if (currentPhase.cutscenePrefab != null)
+        {
+            Instantiate(currentPhase.cutscenePrefab);
+        }
     }
 
     public void DeliveryMade()
@@ -94,11 +99,6 @@ public class GameManager : MonoBehaviour
                 SpawnEnemies(enemyDrop);
             }
         }  
-    }
-
-    void RunCinematicCamera()
-    {
-
     }
 
     private void SpawnEnemies(Phase.EnemyDrop enemyDropInfo)

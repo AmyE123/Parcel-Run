@@ -49,6 +49,13 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
+            if (GameCutscene.IsPlaying)
+            {
+                _movement.SetDesiredDirection(Vector3.zero);
+                yield return new WaitForSeconds(0.2f);
+                continue;
+            }
+
             if (_inChaseMode)
             {
                 if (_nearbyPlayer != null && HasLineOfSightToPlayer())

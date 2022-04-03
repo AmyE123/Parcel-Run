@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b4fad6c2b260f4f9ce635cd0113e39, type: 3}
-  m_Name: 1_PolicePhase
+  m_Name: 2_ArmyPhase
   m_EditorClassIdentifier: 
   enemyDrops:
   - name: '5 x PoliceEnemy will spawn after 0 deliveries (spawn: West)'
@@ -30,4 +30,4 @@ MonoBehaviour:
     prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
   deliveryCountToPass: 6
   playerTransport: 0
-  cutscenePrefab: {fileID: 4005519728456941715, guid: 812002670838b1b4e94c243b476a5e5a, type: 3}
+  cutscenePrefab: {fileID: 0}

@@ -49,6 +49,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameCutscene.IsPlaying)
+        {
+            _movement.SetDesiredDirection(Vector3.zero);
+            return;
+        }
+
         HandlePlayerInput();
         DetermineDistanceFromHouse();
     }
