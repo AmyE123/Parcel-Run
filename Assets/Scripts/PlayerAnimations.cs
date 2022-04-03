@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
 {
-    public bool isRunning = false;
+    public bool IsRunning = false;
+    //public float AnimationPlaybackSpeed = 1;
+
     [SerializeField] private Rigidbody _rigidBody;
     [SerializeField] private PersonMovement _playerMove;
     [SerializeField] private AnimationCurve _runMapping;
@@ -27,6 +29,7 @@ public class PlayerAnimations : MonoBehaviour
     {
         float vel = _rigidBody.velocity.magnitude;
 
+        //_anim.speed = AnimationPlaybackSpeed;
         _anim.SetFloat("moveSpeed", Mathf.Max(vel * _runSpeedMultiplier, 0.1f));
         _anim.SetBool("isRunning", _playerMove.IsGrounded && vel > 0.1f);
         _anim.SetBool("isGrounded", _playerMove.IsGrounded);

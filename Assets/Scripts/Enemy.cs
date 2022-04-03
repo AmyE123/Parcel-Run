@@ -28,6 +28,9 @@ public class Enemy : MonoBehaviour
     protected Vector3 _playerLastSeen;
     protected bool _inChaseMode;
 
+    public bool LineOfSightOverride;
+    public bool ChaseModeOverride;
+
     public virtual void SyncBalanceInfo(Phase.GameBalance info)
     {
 
@@ -69,7 +72,7 @@ public class Enemy : MonoBehaviour
                 continue;
             }
 
-            if (_inChaseMode)
+            if (_inChaseMode || ChaseModeOverride)
             {
                 if (_nearbyPlayer != null && HasLineOfSightToPlayer())
                 {
@@ -130,6 +133,11 @@ public class Enemy : MonoBehaviour
 
     protected bool HasLineOfSightToPlayer()
     {
+        if (LineOfSightOverride)
+        {
+            return true;
+        }
+
         Vector3 vecToTarget = _nearbyPlayer.transform.position - transform.position;
 
         if (Physics.Raycast(transform.position, vecToTarget.normalized, out RaycastHit hit, _visionRange))
