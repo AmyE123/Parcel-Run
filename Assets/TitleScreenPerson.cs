@@ -13,13 +13,15 @@ public class TitleScreenPerson : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Animator anim = GetComponent<Animator>();
+
+        anim.SetFloat("runAnimation", _runAnim);
+        anim.SetFloat("moveSpeed", _runSpeed);
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Animator>().SetFloat("runAnimation", _runAnim);
-        GetComponent<Animator>().SetFloat("moveSpeed", _runSpeed);
+
     }
 }
