@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private List<Enemy> _allEnemies;
 
+    public int DeliveriesTotal => _deliveriesTotal;
+
     public Phase CurrentGamePhase
     {
         get

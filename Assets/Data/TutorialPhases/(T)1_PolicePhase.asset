@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b4fad6c2b260f4f9ce635cd0113e39, type: 3}
+  m_Name: (T)1_PolicePhase
+  m_EditorClassIdentifier: 
+  enemyDrops:
+  - name: '1 x PoliceEnemy will spawn after 0 deliveries (spawn: West)'
+    packageRequirement: 0
+    numberToDrop: 1
+    point: 3
+    prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
+  balanceInfo:
+    policeDetectRadius: 5
+    policeVisionRange: 10
+    policeTopSpeed: 3
+    policeAcceleration: 10
+    policeDiveDistance: 2
+    policeDiveSpeed: 8
+    policeDiveRecoveryTime: 1
+  deliveryCountToPass: 6
+  playerTransport: 0
+  cutscenePrefab: {fileID: 4005519728456941715, guid: 812002670838b1b4e94c243b476a5e5a, type: 3}
