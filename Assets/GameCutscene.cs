@@ -15,14 +15,18 @@ public class GameCutscene : MonoBehaviour
     void Start()
     {
         _isPlaying = true;
-        Destroy(gameObject, _destroyTime);
-        FindObjectOfType<CinematicBars>()?.Activate();
+        StartCoroutine(DestroySelf());
     }
 
     // Update is called once per frame
-    void OnDestroy()
+    IEnumerator DestroySelf()
     {
-        _isPlaying = false;
-        FindObjectOfType<CinematicBars>()?.Deactivate();
+        yield return new WaitForSeconds(_destroyTime);
+
+        FindObjectOfType<CinematicBars>()?.TransitionOut(() => 
+        {
+            _isPlaying = false;
+            Destroy(gameObject);
+        });
     }
 }

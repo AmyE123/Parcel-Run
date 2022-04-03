@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
             if (hasReachedRequirement)
             {
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(0.5f);
                 StartNextPhase();
             }
 
@@ -73,7 +73,10 @@ public class GameManager : MonoBehaviour
 
         if (currentPhase.cutscenePrefab != null)
         {
-            Instantiate(currentPhase.cutscenePrefab);
+            FindObjectOfType<CinematicBars>()?.TransitionIn(() =>
+            {
+                Instantiate(currentPhase.cutscenePrefab);
+            });
         }
     }
 

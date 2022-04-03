@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: 2_ArmyPhase
   m_EditorClassIdentifier: 
   enemyDrops:
-  - name: '5 x PoliceEnemy will spawn after 0 deliveries (spawn: West)'
+  - name: '5 x SoldierEnemy will spawn after 0 deliveries (spawn: West)'
     packageRequirement: 0
     numberToDrop: 5
     point: 3
-    prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
-  - name: '2 x PoliceEnemy will spawn after 3 deliveries (spawn: East)'
+    prefabToSpawn: {fileID: 8146629885039606459, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
+  - name: '2 x SoldierEnemy will spawn after 3 deliveries (spawn: East)'
     packageRequirement: 3
     numberToDrop: 2
     point: 1
-    prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
-  - name: '3 x PoliceEnemy will spawn after 5 deliveries (spawn: North)'
+    prefabToSpawn: {fileID: 8146629885039606459, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
+  - name: '3 x SoldierEnemy will spawn after 5 deliveries (spawn: North)'
     packageRequirement: 5
     numberToDrop: 3
     point: 0
-    prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
+    prefabToSpawn: {fileID: 8146629885039606459, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
   deliveryCountToPass: 6
   playerTransport: 0
   cutscenePrefab: {fileID: 0}
