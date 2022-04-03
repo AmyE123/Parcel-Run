@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _movement = GetComponent<PersonMovement>();
-        //W2C.InstantiateAs<PlayerUI>(_uiPrefab).SetPlayer(this);
+        W2C.InstantiateAs<PlayerUI>(_uiPrefab).SetPlayer(this);
     }
 
     // Update is called once per frame
