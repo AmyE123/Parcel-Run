@@ -14,7 +14,6 @@ public class GameCutscene : MonoBehaviour
     private float _destroyTime;
 
     private Volume v;
-    private DepthOfField dov;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +22,12 @@ public class GameCutscene : MonoBehaviour
         StartCoroutine(DestroySelf());
 
         v = FindObjectOfType<Volume>();
-        v.profile.TryGet(out dov);
-        dov.active = false;
+
+        if ( v != null)
+        {
+            v.profile.TryGet(out DepthOfField dov);
+            dov.active = false;
+        }
     }
 
     // Update is called once per frame
@@ -32,14 +35,17 @@ public class GameCutscene : MonoBehaviour
     {
         yield return new WaitForSeconds(_destroyTime);
 
-        v = FindObjectOfType<Volume>();
-        v.profile.TryGet(out dov);
-        dov.active = true;
-
         FindObjectOfType<CinematicBars>()?.TransitionOut(() => 
         {
             _isPlaying = false;
             Destroy(gameObject);
+
+            v = FindObjectOfType<Volume>();
+            if (v != null)
+            {
+                v.profile.TryGet(out DepthOfField dov);
+                dov.active = true;
+            }
         });
     }
 }

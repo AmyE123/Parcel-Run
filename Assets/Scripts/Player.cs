@@ -52,9 +52,9 @@ public class Player : MonoBehaviour
         W2C.InstantiateAs<PlayerUI>(_uiPrefab).SetPlayer(this);
     }
 
-    void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        
+        _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maxHealth);
     }
 
     // Update is called once per frame

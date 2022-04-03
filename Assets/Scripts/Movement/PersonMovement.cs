@@ -24,6 +24,8 @@ public class PersonMovement : MonoBehaviour
 
     public bool IsDoingAction => _isDoingAction;
 
+    public bool IsMidDive => _isDiving && _currentDiveSpeed > 0;
+
     public Vector3 DesiredVelocity => _move.desiredVelocity;
 
     public float MaxSpeed => _move.maxSpeed;

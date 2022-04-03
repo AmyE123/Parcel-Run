@@ -27,6 +27,9 @@ public class SoldierEnemy : Enemy
     [SerializeField]
     private GunAimVisuals _gunAimVisuals;
 
+    [SerializeField]
+    private int _gunDamage = 15;
+
     private Transform _aimTarget;
     private Vector3 _directionToTarget;
     private ShootStage _currentShootStage;
@@ -72,8 +75,12 @@ public class SoldierEnemy : Enemy
 
         _currentShootStage = ShootStage.Shooting;
         
-        Vector3 hitPosition = GetHitAimPosition();
+        Vector3 hitPosition = GetHitAimPosition(out GameObject hitObj);
         _gunAimVisuals.TakeShot(_gunFrontTransform.position, hitPosition);
+
+        if (hitObj.tag == "Player")
+            hitObj.GetComponent<Player>().TakeDamage(_gunDamage);
+
         yield return new WaitForSeconds(_waitAfterShootTime);
 
         _movement.StopDoingAction();
@@ -102,7 +109,7 @@ public class SoldierEnemy : Enemy
         
         transform.rotation = Quaternion.LookRotation(horzVec.normalized);
 
-        Vector3 hitPosition = GetHitAimPosition();
+        Vector3 hitPosition = GetHitAimPosition(out GameObject hitObj);
 
         if (_currentShootStage == ShootStage.Aiming)
             _gunAimVisuals.SetAiming(_gunFrontTransform.position, hitPosition);
@@ -114,10 +121,13 @@ public class SoldierEnemy : Enemy
 
     private float ShootRange => 256;
 
-    Vector3 GetHitAimPosition()
+    Vector3 GetHitAimPosition(out GameObject hitObj)
     {
+        hitObj = null;
+
         if (Physics.Raycast(_gunFrontTransform.position, _directionToTarget.normalized, out RaycastHit hit, ShootRange))
         {
+            hitObj = hit.collider.gameObject;
             return hit.point;
         }
 

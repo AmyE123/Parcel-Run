@@ -7,6 +7,9 @@ public class PoliceEnemy : Enemy
     [SerializeField]
     private float _diveDistance = 3;
 
+    [SerializeField]
+    private int _tackleDamage = 8;
+
     protected override bool IsCloseEnoughForAction()
     {
         return IsWithinDivingDistance();
@@ -31,7 +34,18 @@ public class PoliceEnemy : Enemy
         diff.y = 0;
         
         return diff.magnitude <= _diveDistance;
-    }   
+    } 
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.tag != "Player")
+            return;
+
+        if (_movement.IsMidDive == false)
+            return;
+
+        other.collider.GetComponent<Player>().TakeDamage(_tackleDamage);
+    }
 
     
     public override void SyncBalanceInfo(Phase.GameBalance info)
