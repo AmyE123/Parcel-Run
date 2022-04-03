@@ -18,10 +18,13 @@ public class Player : MonoBehaviour
     private GameObject _uiPrefab;
 
     [SerializeField]
-    private float _maxHealth;
+    private int _maxHealth;
 
     [SerializeField]
-    private float _currentHealth;
+    private int _currentHealth;
+
+    [SerializeField]
+    private PlayerAnimations _anim;
 
     PersonMovement _movement;
     CameraFollow _cameraFollow;
@@ -29,10 +32,13 @@ public class Player : MonoBehaviour
     private bool _hasPackage;
     private DeliveryHouse _currentDestination;
     private bool _canThrowItem;
+    private bool _isDead;
 
     public bool CanThrowItem => _canThrowItem;
 
     public bool HasPackage => _hasPackage;
+
+    public bool IsDead => _isDead;
 
     public Vector3 CurrentDestination => _currentDestination == null ? Vector3.zero : _currentDestination.DoorPosition;
 
@@ -50,11 +56,20 @@ public class Player : MonoBehaviour
     {
         _movement = GetComponent<PersonMovement>();
         W2C.InstantiateAs<PlayerUI>(_uiPrefab).SetPlayer(this);
+        FindObjectOfType<HealthUI>()?.InitHealth(_currentHealth);
     }
 
     public void TakeDamage(int damage)
     {
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maxHealth);
+        FindObjectOfType<HealthUI>()?.HealthChanged(_currentHealth);
+
+        if (_currentHealth == 0)
+        {
+            _anim.DoDie();
+            _isDead = true;
+            this.enabled = false;
+        }
     }
 
     // Update is called once per frame
