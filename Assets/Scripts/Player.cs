@@ -17,6 +17,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _uiPrefab;
 
+    [SerializeField]
+    private float _maxHealth;
+
+    [SerializeField]
+    private float _currentHealth;
+
     PersonMovement _movement;
     CameraFollow _cameraFollow;
 
@@ -44,6 +50,11 @@ public class Player : MonoBehaviour
     {
         _movement = GetComponent<PersonMovement>();
         W2C.InstantiateAs<PlayerUI>(_uiPrefab).SetPlayer(this);
+    }
+
+    void TakeDamage()
+    {
+        
     }
 
     // Update is called once per frame

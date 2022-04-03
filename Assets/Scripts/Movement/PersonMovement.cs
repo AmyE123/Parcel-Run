@@ -44,6 +44,18 @@ public class PersonMovement : MonoBehaviour
         _isDoingAction = false;
     }
 
+    public void SetTopSpeed(float maxSpd, float maxAcc)
+    {
+        _move.maxSpeed = maxSpd;
+        _move.maxAcceleration = maxAcc;
+    }
+
+    public void SetDiveSpeeds(float diveSpd, float diveRecover)
+    {
+        _diveSpeed = diveSpd;
+        _diveRecoverTime = diveRecover;
+    }
+
     public void StartDive(Vector3 targetPosition)
     {
         if (_isDiving)

@@ -30,6 +30,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Phase CurrentOrLastGamePhase
+    {
+        get
+        {
+            if (_gamePhases.Length == 0)
+                return null;
+            
+            if (_phaseIdx >= _gamePhases.Length)
+                return _gamePhases[_gamePhases.Length-1];
+
+            return _gamePhases[_phaseIdx];
+        }
+    }
+
     private void Start()
     {
         StartCoroutine(CheckForNextPhaseLoop());
@@ -78,6 +92,11 @@ public class GameManager : MonoBehaviour
                 Instantiate(currentPhase.cutscenePrefab);
             });
         }
+
+        foreach (var enemy in _allEnemies)
+        {
+            enemy.SyncBalanceInfo(currentPhase.balanceInfo);
+        }
     }
 
     public void DeliveryMade()
@@ -123,7 +142,10 @@ public class GameManager : MonoBehaviour
         for (int i=0; i<enemyDropInfo.numberToDrop; i++)
         {
             GameObject newObj = Instantiate(enemyDropInfo.prefabToSpawn, spawn.GetRandomPointInBounds(), transform.rotation);
-            _allEnemies.Add(newObj.GetComponent<Enemy>());
+            Enemy newEnemy = newObj.GetComponent<Enemy>();
+            newEnemy.SyncBalanceInfo(CurrentOrLastGamePhase.balanceInfo);
+
+            _allEnemies.Add(newEnemy);
         }
     }
 
