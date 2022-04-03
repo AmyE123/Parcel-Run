@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class CinematicBars : MonoBehaviour
 {
     [SerializeField]
-    private RectTransform[] _bars;
+    private Image[] _bars;
 
     [SerializeField]
     private float _transitionTime = 0.5f;
@@ -29,33 +30,33 @@ public class CinematicBars : MonoBehaviour
 
     private IEnumerator TransitionInRoutine(System.Action OnComplete)
     {
-        foreach (RectTransform rt in _bars)
+        foreach (Image img in _bars)
         {
-            rt.DOScaleY(1, _transitionTime).SetEase(Ease.Linear);
+            img.DOFillAmount(1, _transitionTime).SetEase(Ease.Linear);
         }
 
         yield return new WaitForSeconds(_transitionTime + _pauseTime);
         OnComplete.Invoke();
 
-        foreach (RectTransform rt in _bars)
+        foreach (Image img in _bars)
         {
-            rt.DOScaleY(_percentBlockScreen, _transitionTime).SetEase(Ease.Linear);
+            img.DOFillAmount(_percentBlockScreen, _transitionTime).SetEase(Ease.Linear);
         }
     }
 
     private IEnumerator TransitionOutRoutine(System.Action OnComplete)
     {
-        foreach (RectTransform rt in _bars)
+        foreach (Image img in _bars)
         {
-            rt.DOScaleY(1, _transitionTime).SetEase(Ease.Linear);
+            img.DOFillAmount(1, _transitionTime).SetEase(Ease.Linear);
         }
 
         yield return new WaitForSeconds(_transitionTime + _pauseTime);
         OnComplete.Invoke();
 
-        foreach (RectTransform rt in _bars)
+        foreach (Image img in _bars)
         {
-            rt.DOScaleY(0, _transitionTime).SetEase(Ease.Linear);
+            img.DOFillAmount(0, _transitionTime).SetEase(Ease.Linear);
         }
     }
 }
