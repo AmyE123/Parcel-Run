@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b4fad6c2b260f4f9ce635cd0113e39, type: 3}
   m_Name: Dogs
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8146629885039606459, guid: 96ffa3a9bf08e2e47a0fc72c884a32d6, type: 3}
+  enemyPrefab: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
   minEnemyCount: 10
   maxEnemyCount: 20
   maxParcelDeliveryTime: 0
   minParcelDeliveryTime: 0
-  timeBeforeNextPopulation: 3
+  timeBeforeNextPopulation: 10
   deliveryCountToPass: 12
   playerTransport: 0
