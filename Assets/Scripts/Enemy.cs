@@ -5,19 +5,16 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private Player _nearbyPlayer;
+    protected Player _nearbyPlayer;
 
     [SerializeField]
-    private EnemyCalculatePath _pathCalculator;
+    protected EnemyCalculatePath _pathCalculator;
 
     [SerializeField]
-    private PersonMovement _movement;
+    protected PersonMovement _movement;
 
     [SerializeField]
-    private float _diveDistance;
-
-    [SerializeField]
-    private float _visionRange = 20f;
+    protected float _visionRange = 20f;
 
     [SerializeField]
     private GameObject _exclaimPrefab;
@@ -25,26 +22,30 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject _questionPrefab;
 
-    private Vector3 _playerLastSeen;
-    private bool _inChaseMode;
+    protected Vector3 _playerLastSeen;
+    protected bool _inChaseMode;
 
     void Start()
     {
         StartCoroutine(EnemyAIRoutine());
     }
 
-    private bool IsWithinDivingDistance()
+    protected virtual bool IsCloseEnoughForAction()
     {
-        if (_nearbyPlayer == null)
-            return false;
-
-        Vector3 diff = _nearbyPlayer.transform.position - transform.position;
-        diff.y = 0;
-        
-        return diff.magnitude <= _diveDistance;
+        return false;
     }
 
-    IEnumerator EnemyAIRoutine()
+    protected virtual bool IsDoingAction()
+    {
+        return false;
+    }
+
+    protected virtual void DoCloseAction()
+    {
+
+    }
+
+    private IEnumerator EnemyAIRoutine()
     {
         while (true)
         {
@@ -57,13 +58,13 @@ public class Enemy : MonoBehaviour
 
                 _pathCalculator.ChasePlayer(_playerLastSeen);
 
-                if (IsWithinDivingDistance())
+                if (IsCloseEnoughForAction())
                 {
-                    _movement.StartDive(_nearbyPlayer.transform.position);
+                    DoCloseAction();
                     _pathCalculator.ClearPath();
                     _movement.SetDesiredDirection(Vector3.zero);
 
-                    while (_movement.IsDiving)
+                    while (IsDoingAction())
                         yield return new WaitForSeconds(0.1f);
 
                     if (_nearbyPlayer != null && HasLineOfSightToPlayer())
@@ -107,7 +108,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    bool HasLineOfSightToPlayer()
+    protected bool HasLineOfSightToPlayer()
     {
         Vector3 vecToTarget = _nearbyPlayer.transform.position - transform.position;
 
@@ -143,12 +144,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void SpawnExclaimation()
+    protected void SpawnExclaimation()
     {
         W2C.InstantiateAs<IconBurst>(_exclaimPrefab).Init(transform.position + Vector3.up);
     }
 
-    private void SpawnQuestion()
+    protected void SpawnQuestion()
     {
         W2C.InstantiateAs<IconBurst>(_questionPrefab).Init(transform.position + Vector3.up);
     }

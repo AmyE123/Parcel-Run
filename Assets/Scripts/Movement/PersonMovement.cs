@@ -22,14 +22,27 @@ public class PersonMovement : MonoBehaviour
 
     public bool IsDiving => _isDiving;
 
+    public bool IsDoingAction => _isDoingAction;
+
     public Vector3 DesiredVelocity => _move.desiredVelocity;
 
     public float MaxSpeed => _move.maxSpeed;
 
     public Vector3 ActualVelocity => _rb.velocity;
 
+    bool _isDoingAction;
     bool _isDiving;
     float _currentDiveSpeed;
+
+    public void StartDoingAction()
+    {
+        _isDoingAction = true;
+    }
+
+    public void StopDoingAction()
+    {
+        _isDoingAction = false;
+    }
 
     public void StartDive(Vector3 targetPosition)
     {
@@ -63,7 +76,7 @@ public class PersonMovement : MonoBehaviour
 
     public void SetDesiredDirection(Vector3 direction)
     {
-        if (_isDiving)
+        if (_isDiving || _isDoingAction)
             return;
 
         _move.desiredVelocity = direction * _move.maxSpeed;
@@ -76,7 +89,7 @@ public class PersonMovement : MonoBehaviour
 
     public void SetJumpRequested(bool isRequested)
     {
-        if (_isDiving)
+        if (_isDiving || _isDoingAction)
             return;
 
         _jump.isRequested |= isRequested;
@@ -170,7 +183,7 @@ public class PersonMovement : MonoBehaviour
 
     void AdjustVelocity () 
     {
-        if (_isDiving)
+        if (_isDiving || _isDoingAction)
         {
             float yVel = _move.velocity.y;
             _move.velocity = transform.forward * _currentDiveSpeed;
