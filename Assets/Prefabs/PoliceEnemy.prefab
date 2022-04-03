@@ -113,10 +113,10 @@ MonoBehaviour:
   _nearbyPlayer: {fileID: 0}
   _pathCalculator: {fileID: 2553810698044106026}
   _movement: {fileID: 8146629885039606456}
-  _diveDistance: 3
   _visionRange: 18
   _exclaimPrefab: {fileID: 3948252512437482619, guid: 23549afd80f9e443a8a50e64dfd37adc, type: 3}
   _questionPrefab: {fileID: 3948252512437482619, guid: 1ca096979433d488d87dce82f598adaf, type: 3}
+  _diveDistance: 3
 --- !u!114 &2553810698044106026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +297,10 @@ PrefabInstance:
     - target: {fileID: -6161627791049898280, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5247866537256372307, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4631165619679339901, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
       propertyPath: m_Materials.Array.data[0]

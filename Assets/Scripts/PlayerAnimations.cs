@@ -68,4 +68,22 @@ public class PlayerAnimations : MonoBehaviour
     {
         _playerMove.RecoveredFromDiving();
     }
+
+    public void StartAimingGun()
+    {
+        _anim.ResetTrigger("aimGunTrigger");
+        _anim.SetTrigger("aimGunTrigger");
+    }
+
+    public void StopAimingGun()
+    {
+        _anim.ResetTrigger("stopAimGunTrigger");
+        _anim.SetTrigger("stopAimGunTrigger");
+    }
+
+    public void SetGunAimAngle(float angle)
+    {
+        angle = Mathf.Clamp(angle, -30, 30);
+        _anim.SetFloat("gunAimAngle", angle);
+    }
 }
