@@ -292,6 +292,7 @@ MonoBehaviour:
   _gunFrontTransform: {fileID: 1501528594699112425}
   _anim: {fileID: 6732647371288847534}
   _gunAimVisuals: {fileID: 4208759149476813157}
+  _gunDamage: 6
 --- !u!114 &2553810698044106026
 MonoBehaviour:
   m_ObjectHideFlags: 0

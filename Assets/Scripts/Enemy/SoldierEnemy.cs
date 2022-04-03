@@ -78,8 +78,10 @@ public class SoldierEnemy : Enemy
         Vector3 hitPosition = GetHitAimPosition(out GameObject hitObj);
         _gunAimVisuals.TakeShot(_gunFrontTransform.position, hitPosition);
 
-        if (hitObj.tag == "Player")
-            hitObj.GetComponent<Player>().TakeDamage(_gunDamage);
+        if (hitObj != null && hitObj.tag == "Player")
+        {
+            hitObj.GetComponent<Player>()?.TakeDamage(_gunDamage);
+        }
 
         yield return new WaitForSeconds(_waitAfterShootTime);
 

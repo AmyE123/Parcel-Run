@@ -219,6 +219,7 @@ MonoBehaviour:
   _uiPrefab: {fileID: 4812734773870789216, guid: dfc62fb91bf164734a91a96e8f5bdf46, type: 3}
   _maxHealth: 40
   _currentHealth: 40
+  _anim: {fileID: 7437458303423646453}
 --- !u!114 &7996635678159963006
 MonoBehaviour:
   m_ObjectHideFlags: 0

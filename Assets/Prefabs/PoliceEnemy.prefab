@@ -118,6 +118,7 @@ MonoBehaviour:
   _exclaimPrefab: {fileID: 3948252512437482619, guid: 23549afd80f9e443a8a50e64dfd37adc, type: 3}
   _questionPrefab: {fileID: 3948252512437482619, guid: 1ca096979433d488d87dce82f598adaf, type: 3}
   _diveDistance: 3
+  _tackleDamage: 2
 --- !u!114 &2553810698044106026
 MonoBehaviour:
   m_ObjectHideFlags: 0

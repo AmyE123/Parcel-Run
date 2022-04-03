@@ -33,6 +33,12 @@ public class PlayerAnimations : MonoBehaviour
         _anim.SetFloat("runAnimation", _runMapping.Evaluate(_rigidBody.velocity.magnitude));
     }
 
+    public void DoDie()
+    {
+        _anim.ResetTrigger("deathTrigger");
+        _anim.SetTrigger("deathTrigger");
+    }
+
     public void DoJump()
     {
         _anim.ResetTrigger("jumpTrigger");
