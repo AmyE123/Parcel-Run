@@ -10,6 +10,9 @@ public class DeliveryManager : MonoBehaviour
     [SerializeField]
     private Postbox[] _allPostboxes;
 
+    [SerializeField]
+    private GameManager _gameManager;
+
     private List<DeliveryHouse> _nextHouseList;
 
     // Start is called before the first frame update
@@ -41,6 +44,7 @@ public class DeliveryManager : MonoBehaviour
             box.DeliveryMade();
 
         SpawnNewPackagesWhereNeeded();
+        _gameManager.DeliveryMade();
     }
 
     void SpawnNewPackagesWhereNeeded()

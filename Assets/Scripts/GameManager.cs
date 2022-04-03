@@ -4,85 +4,140 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    const float CINEMATICTIMER = 4;
+    [Header("Phase Information")]
+    [SerializeField] private Phase[] _gamePhases;
+    [SerializeField] private int _phaseIdx = 0;
+    [SerializeField] private int _deliveriesThisPhase;
+    [SerializeField] private int _deliveriesTotal;
 
-    public Phase[] GamePhases;
-    public Transform EnemySpawnPointTransform;
-    public SpawnPoint EnemySpawnPoint;
+    [Header("Spawn Information")]
+    [SerializeField] private SpawnPoint _northEnemySpawnPoint;
+    [SerializeField] private SpawnPoint _eastEnemySpawnPoint;
+    [SerializeField] private SpawnPoint _southEnemySpawnPoint;
+    [SerializeField] private SpawnPoint _westEnemySpawnPoint;
 
-    public GameObject Player;
+    [SerializeField] private Player _player;
+    [SerializeField] private List<Enemy> _allEnemies;
 
-    public List<GameObject> ActiveEnemies;
+    public Phase CurrentGamePhase
+    {
+        get
+        {
+            if (_gamePhases.Length == 0 || _phaseIdx >= _gamePhases.Length)
+                return null;
 
-    public int PhaseIdx = 0;
-
-    public float Timer;
-    public float CinematicTimer;
-
-    public int ParcelsDelivered;
-
-    public GameObject CinematicCamera;
+            return _gamePhases[_phaseIdx];
+        }
+    }
 
     private void Start()
     {
-        Timer = GamePhases[PhaseIdx].timeBeforeNextPopulation;
-        CinematicTimer = CINEMATICTIMER;
+        StartCoroutine(CheckForNextPhaseLoop());
     }
 
-    private void Update()
-    {        
-        StartPhase(PhaseIdx);
-        if (ParcelsDelivered == GamePhases[PhaseIdx].deliveryCountToPass)
-        {
-            foreach (GameObject g in ActiveEnemies)
-            {
-                Destroy(g);
-            }
-            ActiveEnemies.Clear();
-
-            CinematicTimer = CINEMATICTIMER;
-            PhaseIdx++;
-        }
-    }
-
-    void StartPhase(int PhaseIdx)
+    private IEnumerator CheckForNextPhaseLoop()
     {
-        var phase = GamePhases[PhaseIdx];
-        RunCinematicCamera();
-
-        if (ActiveEnemies.Count < phase.minEnemyCount)
+        while (true)
         {
-            for (int i = 0; i < phase.minEnemyCount; i++)
-            {
-                ActiveEnemies.Add(SpawnEnemy(phase.enemyPrefab));
-            }         
-        }
+            Phase currentPhase = CurrentGamePhase;
 
-        if (ActiveEnemies.Count < phase.maxEnemyCount)
-        {            
-            Timer -= Time.deltaTime;
-            if (Timer <= 0)
+            if (currentPhase == null)
             {
-                ActiveEnemies.Add(SpawnEnemy(phase.enemyPrefab));
-                Timer = phase.timeBeforeNextPopulation;
-            }           
-        }               
+                yield return new WaitForSeconds(1);
+                continue;
+            }
+
+            bool hasReachedRequirement = _deliveriesThisPhase >= currentPhase.deliveryCountToPass;
+
+            if (hasReachedRequirement)
+            {
+                yield return new WaitForSeconds(3);
+                StartNextPhase();
+            }
+
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    private void StartNextPhase()
+    {
+        _phaseIdx ++;
+
+        Phase currentPhase = CurrentGamePhase;
+        _deliveriesThisPhase = 0;
+
+        if (currentPhase == null)
+            return;
+
+        CheckForEnemiesToSpawn();
+    }
+
+    public void DeliveryMade()
+    {
+        _deliveriesThisPhase += 1;
+        _deliveriesTotal += 1;
+
+        CheckForEnemiesToSpawn();
+    }
+
+    void CheckForEnemiesToSpawn()
+    {
+        Phase currentPhase = CurrentGamePhase;
+
+        if (currentPhase == null)
+            return;
+
+        foreach (var enemyDrop in currentPhase.enemyDrops)
+        {
+            if (enemyDrop.packageRequirement == _deliveriesThisPhase)
+            {
+                SpawnEnemies(enemyDrop);
+            }
+        }  
     }
 
     void RunCinematicCamera()
     {
-        CinematicCamera.SetActive(true);
-        CinematicTimer -= Time.deltaTime;
 
-        if (CinematicTimer <= 0)
+    }
+
+    private void SpawnEnemies(Phase.EnemyDrop enemyDropInfo)
+    {
+        SpawnPoint spawn = GetSpawnPoint(enemyDropInfo.point);
+
+        if (spawn == null)
         {
-            CinematicCamera.SetActive(false);
-            CinematicTimer = 0;
+            Debug.LogError($"No spawn point set for {enemyDropInfo.point}!");
+            return;
+        }
+
+        if (enemyDropInfo.prefabToSpawn == null)
+        {
+            Debug.LogError($"Cannot peform enemy drop without a prefab!");
+            return;
+        }
+    
+        for (int i=0; i<enemyDropInfo.numberToDrop; i++)
+        {
+            GameObject newObj = Instantiate(enemyDropInfo.prefabToSpawn, spawn.GetRandomPointInBounds(), transform.rotation);
+            _allEnemies.Add(newObj.GetComponent<Enemy>());
         }
     }
 
-    GameObject SpawnEnemy(GameObject Enemy)
+    private SpawnPoint GetSpawnPoint(Phase.SpawnPoint point)
     {
-        return Instantiate(Enemy, EnemySpawnPoint.GetRandomPointInBounds(), transform.rotation);
+        if (point == Phase.SpawnPoint.North)
+            return _northEnemySpawnPoint;
+
+        if (point == Phase.SpawnPoint.East)
+            return _northEnemySpawnPoint;
+
+        if (point == Phase.SpawnPoint.South)
+            return _northEnemySpawnPoint;
+
+        if (point == Phase.SpawnPoint.West)
+            return _northEnemySpawnPoint;
+
+        return null;
     }
 }

@@ -10,13 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b4fad6c2b260f4f9ce635cd0113e39, type: 3}
-  m_Name: Dogs 1
+  m_Name: 0_StartPhase
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8146629885039606459, guid: 79e98175aa531b44bb4936e3c905ac10, type: 3}
-  minEnemyCount: 2
-  maxEnemyCount: 10
-  maxParcelDeliveryTime: 0
-  minParcelDeliveryTime: 0
-  timeBeforeNextPopulation: 2
-  deliveryCountToPass: 3
+  enemyDrops: []
+  deliveryCountToPass: 1
   playerTransport: 0
+  cutscenePrefab: {fileID: 0}
