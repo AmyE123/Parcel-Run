@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
 
         if (_currentHealth == 0)
         {
+            _movement.SetDesiredDirection(Vector3.zero);
             _anim.DoDie();
             _isDead = true;
             this.enabled = false;
