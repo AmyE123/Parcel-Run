@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh537132
+  m_Name: pb_Mesh838814
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -673,7 +673,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh537078
+  m_Name: pb_Mesh838760
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1159,7 +1159,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh537064
+  m_Name: pb_Mesh838746
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2206,7 +2206,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh537022
+  m_Name: pb_Mesh838704
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2600,6 +2600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoldierEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8146629885039606459, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8146629885039606460, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -2731,7 +2735,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh537048
+  m_Name: pb_Mesh838730
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5384,7 +5388,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh536978
+  m_Name: pb_Mesh838660
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7897,6 +7901,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2072cdadea4609546a36a0275ded54e2, type: 2}
   - {fileID: 11400000, guid: 98e0ec76b4dbf2c49b95c0003763cd0d, type: 2}
   - {fileID: 11400000, guid: 8630bce7af469cb44bca88c2cc84bb4c, type: 2}
+  - {fileID: 11400000, guid: 6fdd4388b6d830348b552ad7f568a0e2, type: 2}
   _phaseIdx: 0
   _deliveriesThisPhase: 0
   _deliveriesTotal: 0
@@ -8105,6 +8110,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoldierEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8146629885039606459, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8146629885039606460, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -8165,6 +8174,10 @@ PrefabInstance:
     - target: {fileID: 8146629885039606459, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
       propertyPath: m_Name
       value: SoldierEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146629885039606459, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8146629885039606460, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
       propertyPath: m_RootOrder
@@ -8682,7 +8695,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh536894
+  m_Name: pb_Mesh838576
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8846,7 +8859,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh537000
+  m_Name: pb_Mesh838682
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9210,7 +9223,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh536808
+  m_Name: pb_Mesh838490
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
