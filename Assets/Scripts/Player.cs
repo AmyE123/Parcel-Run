@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
 
     public bool CanReceivePackage() => _hasPackage == false;
 
+    private GamePauseMenu _pauseMenu;
+
     public void TakePackage(DeliveryHouse destination)
     {
         _hasPackage = true;
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _pauseMenu = FindObjectOfType<GamePauseMenu>();
         _movement = GetComponent<PersonMovement>();
         W2C.InstantiateAs<PlayerUI>(_uiPrefab).SetPlayer(this);
         FindObjectOfType<HealthUI>()?.InitHealth(_currentHealth);
@@ -80,7 +83,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameCutscene.IsPlaying)
+        if (GameCutscene.IsPlaying || (_pauseMenu != null && _pauseMenu.IsPaused))
         {
             _movement.SetDesiredDirection(Vector3.zero);
             return;
