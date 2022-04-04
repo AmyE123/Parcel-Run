@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class PlayerUI : W2C
 {
@@ -10,6 +11,9 @@ public class PlayerUI : W2C
 
     [SerializeField]
     private RectTransform _deliverRect;
+
+    [SerializeField]
+    private TMP_Text _distanceText;
 
     public void SetPlayer(Player player)
     {
@@ -37,6 +41,17 @@ public class PlayerUI : W2C
             DOTween.Kill(_deliverRect);
             _deliverRect.localScale = Vector3.zero;
             _deliverRect.gameObject.SetActive(false);
-        }   
+        }
+
+        int disty = _player.DistanceToDestination;
+
+        if (disty == 0 || _deliverRect.gameObject.activeSelf)
+        {
+            _distanceText.text = "";
+        }
+        else
+        {
+            _distanceText.text = $"{disty}m";
+        }
     }
 }

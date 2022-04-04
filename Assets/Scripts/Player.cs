@@ -43,6 +43,17 @@ public class Player : MonoBehaviour
 
     public bool IsDead => _isDead;
 
+    public int DistanceToDestination
+    {
+        get
+        {
+            if (_currentDestination == null)
+                return 0;
+
+            return Mathf.RoundToInt(Vector3.Distance(transform.position, _currentDestination.DoorPosition));
+        }
+    }
+
     public Vector3 CurrentDestination => _currentDestination == null ? Vector3.zero : _currentDestination.DoorPosition;
 
     public bool CanReceivePackage() => _hasPackage == false;
