@@ -83,6 +83,11 @@ public class PersonMovement : MonoBehaviour
         _currentDiveSpeed = 0;
     }
 
+    public void ApplyForce(Vector3 force)
+    {
+        _rb.AddForce(force);
+    }
+
     public void RecoveredFromDiving()
     {
         _isDiving = false;
@@ -197,12 +202,17 @@ public class PersonMovement : MonoBehaviour
 
     void AdjustVelocity () 
     {
-        if (_isDiving || _isDoingAction)
+        if (_isDiving)
         {
             float yVel = _move.velocity.y;
             _move.velocity = transform.forward * _currentDiveSpeed;
             _move.velocity.y = yVel;
             return;
+        }
+
+        if (_isDoingAction)
+        {
+            _move.desiredVelocity = Vector3.zero;
         }
 
 		Vector3 xAxis = ProjectOnContactPlane(Vector3.right);

@@ -30,6 +30,12 @@ public class SoldierEnemy : Enemy
     [SerializeField]
     private int _gunDamage = 15;
 
+    [SerializeField]
+    private ParticleSystem _shootParticles;
+
+    [SerializeField]
+    private float _shootForce = 5f;
+
     private Transform _aimTarget;
     private Vector3 _directionToTarget;
     private ShootStage _currentShootStage;
@@ -77,6 +83,12 @@ public class SoldierEnemy : Enemy
         
         Vector3 hitPosition = GetHitAimPosition(out GameObject hitObj);
         _gunAimVisuals.TakeShot(_gunFrontTransform.position, hitPosition);
+
+        _shootParticles.transform.position = _gunFrontTransform.position;
+        _shootParticles.transform.rotation = _gunFrontTransform.rotation;
+
+        _shootParticles.Emit(32);
+        _movement.ApplyForce(_gunFrontTransform.forward * -_shootForce);
 
         if (hitObj != null && hitObj.tag == "Player")
         {
