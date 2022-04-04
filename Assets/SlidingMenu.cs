@@ -40,7 +40,7 @@ public class SlidingMenu : MonoBehaviour
         DOTween.Kill(_rt);
 
         _rt.DOAnchorPos(_inactivePosition, _transitionTime)
-            .SetEase(_appearEase)
+            .SetEase(_disappearEase)
             .OnComplete(() => gameObject.SetActive(false));
 
     }

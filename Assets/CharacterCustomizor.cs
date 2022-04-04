@@ -22,10 +22,59 @@ public class CharacterCustomizor : MonoBehaviour
     [SerializeField]
     private SelectBodypartGrid _grid;
 
+    [SerializeField]
+    private Material _skinMat;
+
+    [SerializeField]
+    private Material _shirtMat;
+    
+    [SerializeField]
+    private Material _legsMat;
+
+    [SerializeField]
+    private SlidingMenu _colorPickerPanel;
+
+    private Material _currentMat;
+
+    private BodyArea _selectedArea = BodyArea.None;
+
+    private HueSlider _hueSlider;
+
     public void ButtonPressBodyArea(int areaInt)
     {
         BodyArea area = (BodyArea) areaInt;
-        _grid.SetItems(_items, area);
+
+        if (_selectedArea == area)
+        {
+            _grid.SetItems(_items, BodyArea.None);
+            _currentMat = null;
+            _selectedArea = BodyArea.None;
+            _colorPickerPanel.MakeDisappear();
+        }
+        else
+        {
+            if (area == BodyArea.Skin)
+                _currentMat = _skinMat;
+            else if (area == BodyArea.Shirt)
+                _currentMat = _shirtMat;
+            else if (area == BodyArea.Legs)
+                _currentMat = _legsMat;
+            else
+                _currentMat = null;
+
+            if (_currentMat != null)
+            {
+                _hueSlider.SetColor(_currentMat.color);
+                _colorPickerPanel.MakeAppear();
+            }
+            else
+            {
+                _colorPickerPanel.MakeDisappear();
+            }
+
+            _selectedArea = area;
+            _grid.SetItems(_items, area);
+        }
     }
 
     public void SelectionMade(CustomItem chosenItem)
@@ -37,7 +86,7 @@ public class CharacterCustomizor : MonoBehaviour
 
             if (itm.sceneObject == null)
                 continue;
-                
+
             itm.sceneObject.gameObject.SetActive(chosenItem.sceneObject == itm.sceneObject);
         }
     }
@@ -53,10 +102,18 @@ public class CharacterCustomizor : MonoBehaviour
         }
     }
 
+    public void ColorChanged(Color col)
+    {
+        if (_currentMat == null)
+            return;
+
+        _currentMat.color = col;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _hueSlider = FindObjectOfType<HueSlider>();
     }
 
     // Update is called once per frame
