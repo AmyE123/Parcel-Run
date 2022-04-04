@@ -56,6 +56,22 @@ public class Phase : ScriptableObject
         public float policeDiveSpeed = 8;
         [Tooltip("How long will they wait on the floor after diving?")]
         public float policeDiveRecoveryTime = 1;
+
+        [Header("Soldier")]
+        [Tooltip("How close can the player get before they're noticed?")]
+        public float soliderDetectRadius = 12;
+        [Tooltip("How far can the player be seen for until they lose sight?")]
+        public float soliderVisionRange = 20;
+        public float soliderTopSpeed = 6;
+        public float soliderAcceleration = 15;
+        [Tooltip("How close do they need to be to the player before shooting?")]
+        public float soliderShootDistance = 8;
+        [Tooltip("How long do they spend lining up their shot?")]
+        public float soldierAimTime = 1.5f;
+        [Tooltip("How long will they wait after lining up the shot before shooting?")]
+        public float soldierLockTime = 0.5f;
+        [Tooltip("How long will they wait after shooting before moving again?")]
+        public float soldierRecoilTime = 0.5f;
     }
 
     // [Header("Enemy Squad Information")]

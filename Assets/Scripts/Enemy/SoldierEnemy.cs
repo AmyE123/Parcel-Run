@@ -148,4 +148,16 @@ public class SoldierEnemy : Enemy
         Vector3 farPoint = _gunFrontTransform.position + (_directionToTarget * ShootRange);
         return farPoint;
     }
+
+        
+    public override void SyncBalanceInfo(Phase.GameBalance info)
+    {
+        SetDetectionRadius(info.soliderDetectRadius);
+        _visionRange = info.soliderVisionRange;
+        _shootDistance = info.soliderShootDistance;
+        _movement.SetTopSpeed(info.soliderTopSpeed, info.soliderAcceleration);
+        _aimTime = info.soldierAimTime;
+        _holdTime = info.soldierLockTime;
+        _waitAfterShootTime = info.soldierRecoilTime;
+    }
 }

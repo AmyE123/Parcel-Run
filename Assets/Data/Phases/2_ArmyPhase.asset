@@ -36,6 +36,14 @@ MonoBehaviour:
     policeDiveDistance: 4
     policeDiveSpeed: 10
     policeDiveRecoveryTime: 0.5
+    soliderDetectRadius: 12
+    soliderVisionRange: 20
+    soliderTopSpeed: 6
+    soliderAcceleration: 15
+    soliderShootDistance: 8
+    soldierAimTime: 1.5
+    soldierLockTime: 0.5
+    soldierRecoilTime: 0.5
   deliveryCountToPass: 6
   playerTransport: 0
   cutscenePrefab: {fileID: 0}
