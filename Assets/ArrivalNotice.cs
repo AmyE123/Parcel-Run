@@ -77,7 +77,8 @@ public class ArrivalNotice : MonoBehaviour
 
                 _rt.DOAnchorPos(_activePos, _transitionInTime).SetEase(_transitionInEase);
                 yield return new WaitForSeconds(_transitionInTime + _timeToDisplay);
-                _rt.DOAnchorPos(_inactivePos, _transitionInTime).SetEase(_transitionOutEase);
+                _rt.DOAnchorPos(_inactivePos, _transitionOutTime).SetEase(_transitionOutEase);
+                yield return new WaitForSeconds(_transitionOutTime);
             }
 
             yield return new WaitForSeconds(0.1f);
