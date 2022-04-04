@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _doorObject: {fileID: 6510490080591251840}
   _punchScale: {x: 0.9, y: 1.1, z: 0.9}
+  SFX: {fileID: 0}
+  DeliverAudio: {fileID: 8300000, guid: 91fc4257a9ae04e4a8b6906a45d54dd3, type: 3}
 --- !u!1 &6947709250845095068
 GameObject:
   m_ObjectHideFlags: 0

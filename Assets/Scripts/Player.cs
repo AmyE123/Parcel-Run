@@ -60,6 +60,9 @@ public class Player : MonoBehaviour
 
     private GamePauseMenu _pauseMenu;
 
+    public AudioSource SFX;
+    public AudioClip ThrowSound;
+
     public void TakePackage(DeliveryHouse destination)
     {
         _hasPackage = true;
@@ -77,6 +80,7 @@ public class Player : MonoBehaviour
         _movement = GetComponent<PersonMovement>();
         W2C.InstantiateAs<PlayerUI>(_uiPrefab).SetPlayer(this);
         FindObjectOfType<HealthUI>()?.InitHealth(_currentHealth);
+        SFX = GameObject.Find("SoundFX").GetComponent<AudioSource>();
     }
 
     public void TakeDamage(int damage)
@@ -131,6 +135,8 @@ public class Player : MonoBehaviour
 
     void ThrowPackage()
     {
+        SFX.PlayOneShot(ThrowSound);
+
         if (_canThrowItem == false)
             return;
 

@@ -32,9 +32,19 @@ public class PersonMovement : MonoBehaviour
 
     public Vector3 ActualVelocity => _rb.velocity;
 
+    public AudioSource SFX;
+    public AudioClip JumpSound;
+    public AudioClip ExtraJumpSound;
+    public AudioClip TackleSound;
+
     bool _isDoingAction;
     bool _isDiving;
     float _currentDiveSpeed;
+
+    public void Start()
+    {
+        SFX = GameObject.Find("SoundFX").GetComponent<AudioSource>();
+    }
 
     public void StartDoingAction()
     {
@@ -59,7 +69,7 @@ public class PersonMovement : MonoBehaviour
     }
 
     public void StartDive(Vector3 targetPosition)
-    {
+    {        
         if (_isDiving)
             return;
 
@@ -76,6 +86,7 @@ public class PersonMovement : MonoBehaviour
         _anim.StartDive(_diveRecoverTime);
         _isDiving = true;
         _currentDiveSpeed = _diveSpeed;
+        SFX.PlayOneShot(TackleSound);
     }
 
     public void StopDiving()
@@ -173,6 +184,7 @@ public class PersonMovement : MonoBehaviour
             _move.velocity += _ground.contactNormal  * jumpSpeed;
             SetHasJump(true);
             _anim.DoJump();
+            SFX.PlayOneShot(JumpSound);
         }
         else if (_jump.hasExtraJump)
         {
@@ -185,6 +197,7 @@ public class PersonMovement : MonoBehaviour
             _move.velocity += transform.forward * _jump.extraJumpSpeed;
             _move.velocity += Vector3.up * _jump.extraJumpLift;
             _anim.DoAirJump();
+            SFX.PlayOneShot(ExtraJumpSound);
         }
 
         _jump.stepsSinceLastJump = 0;

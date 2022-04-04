@@ -179,6 +179,10 @@ MonoBehaviour:
   _anim: {fileID: 6732647371288847534}
   _diveSpeed: 6
   _diveRecoverTime: 2
+  SFX: {fileID: 0}
+  JumpSound: {fileID: 8300000, guid: 91fc4257a9ae04e4a8b6906a45d54dd3, type: 3}
+  ExtraJumpSound: {fileID: 8300000, guid: 4d19cab3472ed644a99af86b1f5a13fb, type: 3}
+  TackleSound: {fileID: 8300000, guid: 67b86acad1a04f64ba5603a7abc56246, type: 3}
 --- !u!114 &8146629885039606402
 MonoBehaviour:
   m_ObjectHideFlags: 0
