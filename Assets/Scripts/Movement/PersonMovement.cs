@@ -86,11 +86,11 @@ public class PersonMovement : MonoBehaviour
         _anim.StartDive(_diveRecoverTime);
         _isDiving = true;
         _currentDiveSpeed = _diveSpeed;
-        SFX.PlayOneShot(TackleSound);
     }
 
     public void StopDiving()
     {
+        SFX.PlayOneShot(TackleSound);
         _currentDiveSpeed = 0;
     }
 

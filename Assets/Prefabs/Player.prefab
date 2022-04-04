@@ -266,7 +266,7 @@ MonoBehaviour:
   SFX: {fileID: 0}
   JumpSound: {fileID: 8300000, guid: 1652c7c9d11f8be419416598f70fe0e1, type: 3}
   ExtraJumpSound: {fileID: 8300000, guid: 699f836519d8763478b2243e87061646, type: 3}
-  TackleSound: {fileID: 8300000, guid: b055a229b87ad1342be3d90834b111e5, type: 3}
+  TackleSound: {fileID: 8300000, guid: ba98864313966ed4faf377e3b931d592, type: 3}
 --- !u!114 &7996635678159962948
 MonoBehaviour:
   m_ObjectHideFlags: 0
