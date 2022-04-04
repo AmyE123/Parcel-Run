@@ -20,6 +20,14 @@ public class SettingsData : ScriptableObject
 
     public DifficultySetting[] difficulties;
 
+    public int GetStartHealth()
+    {
+        if (chosenDifficulty < 0 || chosenDifficulty >= difficulties.Length)
+            return 38;
+
+        return difficulties[chosenDifficulty].startHearts * 4;
+    }
+
     private string PrefsKey => $"settingsData";
 
     public void SaveToPlayerPrefs()

@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerAnimations _anim;
 
+    [SerializeField]
+    private SettingsData _settings;
+
     PersonMovement _movement;
     CameraFollow _cameraFollow;
 
@@ -56,6 +59,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _currentHealth = _settings.GetStartHealth();
+        _maxHealth = _currentHealth;
+
         _pauseMenu = FindObjectOfType<GamePauseMenu>();
         _movement = GetComponent<PersonMovement>();
         W2C.InstantiateAs<PlayerUI>(_uiPrefab).SetPlayer(this);
