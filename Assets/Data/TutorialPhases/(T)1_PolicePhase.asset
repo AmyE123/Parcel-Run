@@ -19,13 +19,13 @@ MonoBehaviour:
     point: 3
     prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
   balanceInfo:
-    policeDetectRadius: 5
-    policeVisionRange: 10
+    policeDetectRadius: 3
+    policeVisionRange: 30
     policeTopSpeed: 3
     policeAcceleration: 10
     policeDiveDistance: 2
-    policeDiveSpeed: 8
-    policeDiveRecoveryTime: 1
+    policeDiveSpeed: 3
+    policeDiveRecoveryTime: 2
   deliveryCountToPass: 6
   playerTransport: 0
-  cutscenePrefab: {fileID: 4005519728456941715, guid: 812002670838b1b4e94c243b476a5e5a, type: 3}
+  cutscenePrefab: {fileID: 0}

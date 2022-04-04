@@ -59,6 +59,12 @@ public class Player : MonoBehaviour
         FindObjectOfType<HealthUI>()?.InitHealth(_currentHealth);
     }
 
+    public void DisablePlayer()
+    {
+        _movement.SetDesiredDirection(Vector3.zero);
+        this.enabled = false;
+    }
+
     public void TakeDamage(int damage)
     {
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maxHealth);
