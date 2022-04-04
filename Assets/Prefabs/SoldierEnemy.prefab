@@ -5124,6 +5124,8 @@ MonoBehaviour:
   _gunDamage: 6
   _shootParticles: {fileID: 4762245731960711309}
   _shootForce: 256
+  SFX: {fileID: 0}
+  ShootSound: {fileID: 8300000, guid: efb29826360631b40a0ee174a775f33c, type: 3}
 --- !u!114 &2553810698044106026
 MonoBehaviour:
   m_ObjectHideFlags: 0

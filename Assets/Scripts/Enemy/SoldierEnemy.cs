@@ -39,7 +39,15 @@ public class SoldierEnemy : Enemy
     private Transform _aimTarget;
     private Vector3 _directionToTarget;
     private ShootStage _currentShootStage;
-    
+
+    public AudioSource SFX;
+    public AudioClip ShootSound;
+
+    public void Awake()
+    {
+        SFX = GameObject.Find("SoundFX").GetComponent<AudioSource>();
+    }
+
     protected override bool IsCloseEnoughForAction()
     {
         return IsWithinShootingDistance();
@@ -83,6 +91,8 @@ public class SoldierEnemy : Enemy
         
         Vector3 hitPosition = GetHitAimPosition(out GameObject hitObj);
         _gunAimVisuals.TakeShot(_gunFrontTransform.position, hitPosition);
+
+        SFX.PlayOneShot(ShootSound);
 
         _shootParticles.transform.position = _gunFrontTransform.position;
         _shootParticles.transform.rotation = _gunFrontTransform.rotation;
