@@ -1829,27 +1829,27 @@ MonoBehaviour:
     area: 1
   - name: Trousers (Legs)
     sceneObject: {fileID: 27084634}
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: f2c400c573e54984dab81a94920227e3, type: 3}
     area: 4
   - name: Shorts (Legs)
     sceneObject: {fileID: 1789190211}
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 9ff02184b8f0d3447a1264f4032a0056, type: 3}
     area: 4
   - name: SkirtLong (Legs)
     sceneObject: {fileID: 1071613977}
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 173c88c14fafb144bbd4dc81c649b095, type: 3}
     area: 4
   - name: SkirtShort (Legs)
     sceneObject: {fileID: 590698881}
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: dcdd3c62cecb7be49b8097e9e73dbf3d, type: 3}
     area: 4
   - name: SleevesLong (Shirt)
     sceneObject: {fileID: 699050622}
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: a03bf20082cba194ab2cbc8273e6cbc7, type: 3}
     area: 3
   - name: SleevesShort (Shirt)
     sceneObject: {fileID: 2074460513}
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 078d3ac1709f06541bb5b13df33b7eec, type: 3}
     area: 3
   - name: Nothing (Legs)
     sceneObject: {fileID: 0}
@@ -3998,7 +3998,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.599165, y: 1}
+    m_SensorSize: {x: 2.165725, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
