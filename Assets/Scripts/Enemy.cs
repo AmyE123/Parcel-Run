@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
+    public Sprite face;
+    
+    [SerializeField]
     protected Player _nearbyPlayer;
 
     [SerializeField]

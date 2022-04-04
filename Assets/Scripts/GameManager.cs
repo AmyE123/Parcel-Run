@@ -149,6 +149,8 @@ public class GameManager : MonoBehaviour
             Debug.LogError($"Cannot peform enemy drop without a prefab!");
             return;
         }
+
+        FindObjectOfType<ArrivalNotice>().AddToQueue(enemyDropInfo);
     
         for (int i=0; i<enemyDropInfo.numberToDrop; i++)
         {

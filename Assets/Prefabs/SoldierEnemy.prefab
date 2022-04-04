@@ -5101,6 +5101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd7904607d37ae4d83a543740fe6f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  face: {fileID: 21300000, guid: e53f668024d9ae64f98a844166c2340b, type: 3}
   _nearbyPlayer: {fileID: 0}
   _pathCalculator: {fileID: 2553810698044106026}
   _movement: {fileID: 8146629885039606456}
