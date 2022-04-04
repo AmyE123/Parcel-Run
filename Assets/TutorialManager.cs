@@ -87,6 +87,6 @@ public class TutorialManager : MonoBehaviour
         while (_player.transform.position.x < FINAL_POS)
             yield return new WaitForSeconds(0.1f);
 
-        _player.DisablePlayer();
+        _player.enabled = false;
     }
 }
