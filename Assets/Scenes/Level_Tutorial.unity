@@ -5260,7 +5260,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6010638, y: 1}
+    m_SensorSize: {x: 1.777559, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13823,7 +13823,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6010638, y: 1}
+    m_SensorSize: {x: 1.777559, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -17162,7 +17162,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gamePhases:
   - {fileID: 11400000, guid: a887c92f2dcec3e4ab035a47de73c6d4, type: 2}
-  - {fileID: 11400000, guid: a8f9cfb7bed2e214cb64960371af4896, type: 2}
   _phaseIdx: 0
   _deliveriesThisPhase: 0
   _deliveriesTotal: 0
