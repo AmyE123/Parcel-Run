@@ -3998,7 +3998,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.165725, y: 1}
+    m_SensorSize: {x: 1.5992063, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4867,7 +4867,7 @@ MonoBehaviour:
   _transitionTime: 0.7
   _appearEase: 18
   _disappearEase: 18
-  _appearDelay: 1
+  _appearDelay: 0
   _grp: {fileID: 0}
 --- !u!1001 &875136421
 PrefabInstance:

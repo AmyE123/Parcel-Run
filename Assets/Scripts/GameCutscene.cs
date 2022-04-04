@@ -41,7 +41,7 @@ public class GameCutscene : MonoBehaviour
         FindObjectOfType<CinematicBars>()?.TransitionOut(() => 
         {
             _isPlaying = false;
-
+            FindObjectOfType<GameManager>().CheckForEnemiesToSpawn();
             Destroy(gameObject);
 
             v = FindObjectOfType<Volume>();

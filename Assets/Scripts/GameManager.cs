@@ -94,14 +94,16 @@ public class GameManager : MonoBehaviour
         if (currentPhase == null)
             return;
 
-        CheckForEnemiesToSpawn();
-
         if (currentPhase.cutscenePrefab != null)
         {
             FindObjectOfType<CinematicBars>()?.TransitionIn(() =>
             {
                 Instantiate(currentPhase.cutscenePrefab);
             });
+        }
+        else
+        {
+            CheckForEnemiesToSpawn();
         }
 
         foreach (var enemy in _allEnemies)
@@ -118,7 +120,7 @@ public class GameManager : MonoBehaviour
         CheckForEnemiesToSpawn();
     }
 
-    void CheckForEnemiesToSpawn()
+    public void CheckForEnemiesToSpawn()
     {
         Phase currentPhase = CurrentGamePhase;
 
@@ -149,6 +151,8 @@ public class GameManager : MonoBehaviour
             Debug.LogError($"Cannot peform enemy drop without a prefab!");
             return;
         }
+
+        FindObjectOfType<ArrivalNotice>().AddToQueue(enemyDropInfo);
     
         for (int i=0; i<enemyDropInfo.numberToDrop; i++)
         {
@@ -166,13 +170,13 @@ public class GameManager : MonoBehaviour
             return _northEnemySpawnPoint;
 
         if (point == Phase.SpawnPoint.East)
-            return _northEnemySpawnPoint;
+            return _eastEnemySpawnPoint;
 
         if (point == Phase.SpawnPoint.South)
-            return _northEnemySpawnPoint;
+            return _southEnemySpawnPoint;
 
         if (point == Phase.SpawnPoint.West)
-            return _northEnemySpawnPoint;
+            return _westEnemySpawnPoint;
 
         return null;
     }

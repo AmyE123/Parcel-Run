@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
+    public Sprite face;
+    
+    [SerializeField]
     protected Player _nearbyPlayer;
 
     [SerializeField]
@@ -177,12 +180,12 @@ public class Enemy : MonoBehaviour
 
     protected void SpawnExclaimation()
     {
-        W2C.InstantiateAs<IconBurst>(_exclaimPrefab).Init(transform.position + Vector3.up);
+        W2C.InstantiateAs<IconBurst>(_exclaimPrefab).Init(transform, Vector3.up * 1.5f);
     }
 
     protected void SpawnQuestion()
     {
-        W2C.InstantiateAs<IconBurst>(_questionPrefab).Init(transform.position + Vector3.up);
+        W2C.InstantiateAs<IconBurst>(_questionPrefab).Init(transform, Vector3.up * 1.5f);
     }
 
     public void PlayerLeft(Player player)
