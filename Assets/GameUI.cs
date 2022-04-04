@@ -17,7 +17,7 @@ public class GameUI : MonoBehaviour
 
     public void TriggerLoseScreen()
     {
-        _loseScreen.SetValues(_gameManager.DeliveriesTotal, 10);
+        _loseScreen.SetValues(_gameManager.DeliveriesTotal, _gameManager.TotalSeconds);
         _loseScreen.gameObject.SetActive(true);
         _loseScreen.StartAllTweens();
     }

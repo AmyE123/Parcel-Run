@@ -28,7 +28,7 @@ public class LoseScreen : MonoBehaviour
     public void SetValues(int totalDeliveries, int seconds)
     {
         _deliveryCount.text = totalDeliveries.ToString();
-        _timeCount.text = totalDeliveries.ToString();
+        _timeCount.text = seconds.ToString();
     }
 
     public void BtnPressAgain()

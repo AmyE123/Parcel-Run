@@ -19,7 +19,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private List<Enemy> _allEnemies;
 
+    private float _timePlayed;
+
     public int DeliveriesTotal => _deliveriesTotal;
+
+    public int TotalSeconds => Mathf.RoundToInt(_timePlayed);
 
     public Phase CurrentGamePhase
     {
@@ -44,6 +48,11 @@ public class GameManager : MonoBehaviour
 
             return _gamePhases[_phaseIdx];
         }
+    }
+
+    void Update()
+    {
+        _timePlayed += Time.deltaTime;
     }
 
     private void Start()
