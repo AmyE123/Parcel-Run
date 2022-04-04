@@ -18,6 +18,12 @@ public class SlidingMenu : MonoBehaviour
     [SerializeField]
     private Ease _disappearEase = Ease.OutExpo;
 
+    [SerializeField]
+    private float _appearDelay;
+
+    [SerializeField]
+    private CanvasGroup _grp;
+
     private RectTransform _rt;
 
     void Awake()
@@ -25,29 +31,28 @@ public class SlidingMenu : MonoBehaviour
         _rt = GetComponent<RectTransform>();
     }
 
-    public void MakeAppear(float tTime=0, float delay=0)
+    public void MakeAppear()
     {
         gameObject.SetActive(true);
 
         DOTween.Kill(_rt);
 
-        if (tTime == 0)
-            tTime = _transitionTime;
+        _rt.DOAnchorPos(Vector2.zero, _transitionTime).SetEase(_appearEase).SetDelay(_appearDelay);
 
-        _rt.DOAnchorPos(Vector2.zero, _transitionTime)
-            .SetEase(_appearEase).SetDelay(delay);
+        if (_grp != null)
+            _grp.DOFade(1, _transitionTime).SetEase(_appearEase).SetDelay(_appearDelay);
     }
 
-    public void MakeDisappear(float tTime=0)
+    public void MakeDisappear()
     {
         DOTween.Kill(_rt);
 
-        if (tTime == 0)
-            tTime = _transitionTime;
-
-        _rt.DOAnchorPos(_inactivePosition, tTime)
+        _rt.DOAnchorPos(_inactivePosition, _transitionTime)
             .SetEase(_disappearEase)
             .OnComplete(() => gameObject.SetActive(false));
+
+        if (_grp != null)
+            _grp.DOFade(0, _transitionTime).SetEase(_disappearEase);
 
     }
 }

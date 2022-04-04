@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     {
         if (this.enabled == false)
             return;
-            
+
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maxHealth);
         FindObjectOfType<HealthUI>()?.HealthChanged(_currentHealth);
 

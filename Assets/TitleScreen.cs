@@ -25,6 +25,9 @@ public class TitleScreen : MonoBehaviour
     [SerializeField]
     private SavedCharacter _saveData;
 
+    [SerializeField]
+    private LevelSelectScreen _levelSelect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,21 +40,30 @@ public class TitleScreen : MonoBehaviour
         
     }
 
+    public void GoToLevelSelect()
+    {
+        _levelSelect.EnableScreen();
+        _rootMenu.MakeDisappear();
+    }
+
     public void GoToCustom()
     {
         _editorPlayer.SetVisuals(_saveData);
         _customCam.gameObject.SetActive(true);
         _rootCam.gameObject.SetActive(false);
         _rootMenu.MakeDisappear();
-        _customTopBar.MakeAppear(2f, 1.2f);
+        _customTopBar.MakeAppear();
     }
 
     public void GoToRoot()
     {
         _customCam.gameObject.SetActive(false);
         _rootCam.gameObject.SetActive(true);
-        _rootMenu.MakeAppear(delay: 1.2f);
+        _rootMenu.MakeAppear();
         _customTopBar.MakeDisappear();
         _customBottomBar.MakeDisappear();
+
+        if (_levelSelect.gameObject.activeSelf)
+            _levelSelect.DisableScreen();
     }
 }

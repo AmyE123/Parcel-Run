@@ -50,8 +50,6 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator TutorialRoutine()
     {
-        FindObjectOfType<TransitionManager>().LoadScene("TitleScene");
-        
         yield return new WaitForSeconds(1);
         SlideFloor(_corridorFloors[0], _blockerWalls[0]);
 
@@ -119,6 +117,7 @@ public class TutorialManager : MonoBehaviour
 
         _player.enabled = false;
         _movement.SetDesiredDirection(new Vector3(0.3f, 0, 0));
+        FindObjectOfType<TransitionManager>().LoadScene("TitleScene");
     }
 
     void SlideFloor(Transform floor, Transform invisibleWall)
