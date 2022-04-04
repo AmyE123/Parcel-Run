@@ -25,6 +25,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject _questionPrefab;
 
+    [SerializeField]
+    private LayerMask _lineOfSightLayers;
+
     protected Vector3 _playerLastSeen;
     protected bool _inChaseMode;
 
@@ -140,7 +143,7 @@ public class Enemy : MonoBehaviour
 
         Vector3 vecToTarget = _nearbyPlayer.transform.position - transform.position;
 
-        if (Physics.Raycast(transform.position, vecToTarget.normalized, out RaycastHit hit, _visionRange))
+        if (Physics.Raycast(transform.position, vecToTarget.normalized, out RaycastHit hit, _visionRange, _lineOfSightLayers))
         {
             if (hit.collider.tag == "Player")
             {

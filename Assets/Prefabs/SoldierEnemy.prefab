@@ -5108,6 +5108,9 @@ MonoBehaviour:
   _detectZone: {fileID: 830470542519508368}
   _exclaimPrefab: {fileID: 3948252512437482619, guid: 23549afd80f9e443a8a50e64dfd37adc, type: 3}
   _questionPrefab: {fileID: 3948252512437482619, guid: 1ca096979433d488d87dce82f598adaf, type: 3}
+  _lineOfSightLayers:
+    serializedVersion: 2
+    m_Bits: 119
   LineOfSightOverride: 0
   ChaseModeOverride: 0
   _shootDistance: 8
@@ -5549,3 +5552,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _runSpeedMultiplier: 0.7
+  _animationSpeedMul: 1
