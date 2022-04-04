@@ -16,8 +16,8 @@ MonoBehaviour:
   browName: 
   mouthName: 
   shirtName: SleevesShort
-  legsName: Trousers
-  skinColor: {r: 0.57404083, g: 0.78227067, b: 1, a: 1}
-  shirtColor: {r: 0.9514857, g: 0, b: 0, a: 1}
-  legsColor: {r: 0, g: 0, b: 0, a: 1}
+  legsName: Shorts
+  skinColor: {r: 0.89239967, g: 0.9392163, b: 1, a: 1}
+  shirtColor: {r: 1, g: 0.3420158, b: 0.3664558, a: 1}
+  legsColor: {r: 0.28048155, g: 0.35018572, b: 1, a: 1}
   _prefsKey: custom

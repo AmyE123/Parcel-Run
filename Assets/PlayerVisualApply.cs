@@ -29,6 +29,15 @@ public class PlayerVisualApply : MonoBehaviour
     [SerializeField]
     private Material _legsMat;
 
+    [Space(8), SerializeField]
+    private SavedCharacter _applyOnStart;
+
+    void Start()
+    {
+        if (_applyOnStart != null)
+            SetVisuals(_applyOnStart);
+    }
+
     public void SetVisuals(SavedCharacter data)
     {
         foreach (var mesh in _legs)

@@ -25,21 +25,27 @@ public class SlidingMenu : MonoBehaviour
         _rt = GetComponent<RectTransform>();
     }
 
-    public void MakeAppear()
+    public void MakeAppear(float tTime=0, float delay=0)
     {
         gameObject.SetActive(true);
 
         DOTween.Kill(_rt);
 
+        if (tTime == 0)
+            tTime = _transitionTime;
+
         _rt.DOAnchorPos(Vector2.zero, _transitionTime)
-            .SetEase(_appearEase);
+            .SetEase(_appearEase).SetDelay(delay);
     }
 
-    public void MakeDisappear()
+    public void MakeDisappear(float tTime=0)
     {
         DOTween.Kill(_rt);
 
-        _rt.DOAnchorPos(_inactivePosition, _transitionTime)
+        if (tTime == 0)
+            tTime = _transitionTime;
+
+        _rt.DOAnchorPos(_inactivePosition, tTime)
             .SetEase(_disappearEase)
             .OnComplete(() => gameObject.SetActive(false));
 

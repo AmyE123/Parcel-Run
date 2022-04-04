@@ -167,5 +167,9 @@ public class CharacterCustomizer : MonoBehaviour
     {
         ApplyChangesToSaveData();
         _titlePlayer.SetVisuals(_saveData);
+
+        _grid.SetItems(_items, BodyArea.None);
+        _currentMat = null;
+        _selectedArea = BodyArea.None;
     }
 }
