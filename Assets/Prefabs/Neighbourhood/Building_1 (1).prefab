@@ -162,10 +162,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e328c76e1d706f24f824b423e88ffdcd, type: 2}
-  - {fileID: 2100000, guid: 76a8cc40b80f7624aa6ecb3a7d71ac4c, type: 2}
-  - {fileID: -401682579244895114, guid: 52ef3531b8dac3c4e9cccd829f82be98, type: 3}
   - {fileID: 2100000, guid: ef0b2da8d563f164baa5cf16711ea367, type: 2}
+  - {fileID: 2100000, guid: 853956d0cba5fc34aaf1701785e941fb, type: 2}
+  - {fileID: 2100000, guid: fce89c6ad92e60f45be14a7863efa0b1, type: 2}
+  - {fileID: 2100000, guid: 76a8cc40b80f7624aa6ecb3a7d71ac4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -230,3 +230,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _doorObject: {fileID: 6700073235971787110}
   _punchScale: {x: 0.9, y: 1.1, z: 0.9}
+  SFX: {fileID: 0}
+  DeliverAudio: {fileID: 8300000, guid: 91fc4257a9ae04e4a8b6906a45d54dd3, type: 3}
