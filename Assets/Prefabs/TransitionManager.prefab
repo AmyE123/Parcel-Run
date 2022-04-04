@@ -254,7 +254,7 @@ MonoBehaviour:
   - {fileID: 8455925965070591817}
   - {fileID: 8455925966398703030}
   _transitionTime: 1
-  _pauseTime: 0.2
+  _pauseTime: 0.01
 --- !u!1 &8455925966398703033
 GameObject:
   m_ObjectHideFlags: 0

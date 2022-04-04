@@ -119,7 +119,7 @@ MonoBehaviour:
   _questionPrefab: {fileID: 3948252512437482619, guid: 1ca096979433d488d87dce82f598adaf, type: 3}
   _lineOfSightLayers:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 83
   LineOfSightOverride: 1
   ChaseModeOverride: 0
   _diveDistance: 5

@@ -61,11 +61,15 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (this.enabled == false)
+            return;
+            
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maxHealth);
         FindObjectOfType<HealthUI>()?.HealthChanged(_currentHealth);
 
         if (_currentHealth == 0)
         {
+            FindObjectOfType<GameUI>().TriggerLoseScreen();
             _movement.SetDesiredDirection(Vector3.zero);
             _anim.DoDie();
             _isDead = true;

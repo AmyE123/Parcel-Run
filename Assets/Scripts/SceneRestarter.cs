@@ -15,6 +15,6 @@ public class SceneRestarter : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(keyCode))
-            SceneManager.LoadScene(sceneToLoad);
+            FindObjectOfType<TransitionManager>().ReloadCurrentScene();
     }
 }

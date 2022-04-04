@@ -31,6 +31,12 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
+    public void ReloadCurrentScene()
+    {
+        string sceneToLoad = SceneManager.GetActiveScene().name;
+        StartCoroutine(TransitionRoutine(sceneToLoad));
+    }
+
     public void LoadScene(string sceneToLoad)
     {
         StartCoroutine(TransitionRoutine(sceneToLoad));
@@ -39,12 +45,12 @@ public class TransitionManager : MonoBehaviour
     private IEnumerator TransitionRoutine(string sceneToLoad)
     {
         foreach (Image img in _bars)
-            img.DOFillAmount(1, _transitionTime / 2).SetEase(Ease.Linear);
+            img.DOFillAmount(1, _transitionTime / 2).SetEase(Ease.OutSine);
 
         yield return new WaitForSeconds(_transitionTime + _pauseTime);
         SceneManager.LoadScene(sceneToLoad);
 
         foreach (Image img in _bars)
-            img.DOFillAmount(0, _transitionTime).SetEase(Ease.Linear);
+            img.DOFillAmount(0, _transitionTime / 2).SetEase(Ease.OutSine);
     }
 }
