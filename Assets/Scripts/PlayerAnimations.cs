@@ -11,6 +11,7 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private PersonMovement _playerMove;
     [SerializeField] private AnimationCurve _runMapping;
     [SerializeField] private float _runSpeedMultiplier = 1f;
+    [SerializeField] private float _animationSpeedMul = 1f;
     private Animator _anim;
 
     // Start is called before the first frame update
@@ -34,6 +35,8 @@ public class PlayerAnimations : MonoBehaviour
         _anim.SetBool("isRunning", _playerMove.IsGrounded && vel > 0.1f);
         _anim.SetBool("isGrounded", _playerMove.IsGrounded);
         _anim.SetFloat("runAnimation", _runMapping.Evaluate(_rigidBody.velocity.magnitude));
+
+        _anim.speed = _animationSpeedMul;
     }
 
     public void DoDie()

@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 8146629885039606402}
   - component: {fileID: 8146629885039606457}
   - component: {fileID: 8146629885039606461}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: MrXEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,8 +118,9 @@ MonoBehaviour:
   _exclaimPrefab: {fileID: 3948252512437482619, guid: 23549afd80f9e443a8a50e64dfd37adc, type: 3}
   _questionPrefab: {fileID: 3948252512437482619, guid: 1ca096979433d488d87dce82f598adaf, type: 3}
   LineOfSightOverride: 1
-  _diveDistance: 3
-  _tackleDamage: 8
+  ChaseModeOverride: 0
+  _diveDistance: 5
+  _tackleDamage: 12
 --- !u!114 &2553810698044106026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,16 +164,16 @@ MonoBehaviour:
     wallNormal: {x: 0, y: 0, z: 0}
     wallContactCount: 0
   _move:
-    maxAcceleration: 15
+    maxAcceleration: 10
     maxDecceleration: 10
     maxAirAcceleration: 2
     maxAirDecceleration: 0.2
-    maxSpeed: 5
+    maxSpeed: 3
     velocity: {x: 0, y: 0, z: 0}
     desiredVelocity: {x: 0, y: 0, z: 0}
   _collider: {fileID: 8146629885039606457}
   _anim: {fileID: 6732647371288847534}
-  _diveSpeed: 10
+  _diveSpeed: 6
   _diveRecoverTime: 2
 --- !u!114 &8146629885039606402
 MonoBehaviour:
@@ -198,8 +199,8 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: ce63700010ce840cd973f61419b7a365, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.5
+  m_Radius: 1
+  m_Height: 3.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8146629885039606461
@@ -231,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
       propertyPath: m_LocalScale.y
@@ -239,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
       propertyPath: m_LocalPosition.x
@@ -247,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: -1.749
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
       propertyPath: m_LocalPosition.z
@@ -506,8 +507,8 @@ MonoBehaviour:
       inWeight: 0.2665279
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 6.931848
-      value: 0.1768092
+      time: 7.0439553
+      value: 0.3350859
       inSlope: 0.00045908196
       outSlope: 0.00045908196
       tangentMode: 0
@@ -515,8 +516,8 @@ MonoBehaviour:
       inWeight: 0.9320044
       outWeight: 0.17795686
     - serializedVersion: 3
-      time: 20.155554
-      value: 0.18233119
+      time: 20.267662
+      value: 0.34060788
       inSlope: 0.00048510163
       outSlope: 0.00048510163
       tangentMode: 0
@@ -535,4 +536,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _runSpeedMultiplier: 0.7
+  _runSpeedMultiplier: 1
+  _animationSpeedMul: 0.6
