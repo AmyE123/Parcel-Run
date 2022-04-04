@@ -41,7 +41,7 @@ public class SoldierEnemy : Enemy
     private ShootStage _currentShootStage;
 
     public AudioSource SFX;
-    public AudioClip ShootSound;
+    public AudioClip[] ShootSounds;
 
     public void Awake()
     {
@@ -92,7 +92,10 @@ public class SoldierEnemy : Enemy
         Vector3 hitPosition = GetHitAimPosition(out GameObject hitObj);
         _gunAimVisuals.TakeShot(_gunFrontTransform.position, hitPosition);
 
-        SFX.PlayOneShot(ShootSound);
+        if (Random.value < 0.5f)
+            SFX.PlayOneShot(ShootSounds[0]);
+        else
+            SFX.PlayOneShot(ShootSounds[1]);
 
         _shootParticles.transform.position = _gunFrontTransform.position;
         _shootParticles.transform.rotation = _gunFrontTransform.rotation;
