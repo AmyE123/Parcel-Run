@@ -14,6 +14,12 @@ public class TitleScreen : MonoBehaviour
     private SlidingMenu _customBottomBar;
 
     [SerializeField]
+    private SlidingMenu _settingsSlide;
+
+    [SerializeField]
+    private SettingsMenu _settingsMenu;
+
+    [SerializeField]
     private Transform _rootCam;
 
     [SerializeField]
@@ -46,6 +52,13 @@ public class TitleScreen : MonoBehaviour
         _rootMenu.MakeDisappear();
     }
 
+    public void GoToSettings()
+    {
+        _settingsSlide.MakeAppear();
+        _settingsMenu.ApplyDataToUI();
+        _rootMenu.MakeDisappear();
+    }
+
     public void GoToCustom()
     {
         _editorPlayer.SetVisuals(_saveData);
@@ -57,6 +70,7 @@ public class TitleScreen : MonoBehaviour
 
     public void GoToRoot()
     {
+        _settingsSlide.MakeDisappear();
         _customCam.gameObject.SetActive(false);
         _rootCam.gameObject.SetActive(true);
         _rootMenu.MakeAppear();
