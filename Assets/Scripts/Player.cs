@@ -135,7 +135,6 @@ public class Player : MonoBehaviour
 
     void ThrowPackage()
     {
-        SFX.PlayOneShot(ThrowSound);
 
         if (_canThrowItem == false)
             return;
@@ -143,6 +142,7 @@ public class Player : MonoBehaviour
         _hasPackage = false;
         _canThrowItem = false;
         _packageVisuals.gameObject.SetActive(false);
+        SFX.PlayOneShot(ThrowSound);
 
         GameObject projectile = Instantiate(_thrownPackagePrefab);
         projectile.GetComponent<ThrownPackage>().Throw(transform.position, _currentDestination);
