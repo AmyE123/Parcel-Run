@@ -21,4 +21,13 @@ public class IconBurst : W2C
         _image.DOFade(0, _vanishTime).SetDelay(_appearTime + _lifetime).OnComplete(() => Destroy(gameObject));
         SetPosition(position);
     }
+
+    public void Init(Transform tran, Vector3 position)
+    {
+        _trackRect.localScale = Vector3.zero;
+        _trackRect.DOScale(1, _appearTime).SetEase(_easeIn);
+
+        _image.DOFade(0, _vanishTime).SetDelay(_appearTime + _lifetime).OnComplete(() => Destroy(gameObject));
+        SetPosition(tran, position);
+    }
 }
