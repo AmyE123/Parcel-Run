@@ -219,6 +219,7 @@ MonoBehaviour:
   _maxHealth: 40
   _currentHealth: 40
   _anim: {fileID: 7437458303423646453}
+  _settings: {fileID: 11400000, guid: 78c4325a77e25d04e9db415e7a3ac5f5, type: 2}
   SFX: {fileID: 0}
   ThrowSound: {fileID: 8300000, guid: 27a09924e4ca54b4783b56b5e8930b83, type: 3}
 --- !u!114 &7996635678159963006
