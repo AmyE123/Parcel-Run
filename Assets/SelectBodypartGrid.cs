@@ -9,7 +9,7 @@ public class SelectBodypartGrid : MonoBehaviour
 
     private List<SelectBodypartItem> _spawnedObjects = new List<SelectBodypartItem>();
 
-    public void SetItems(List<CharacterCustomizor.CustomItem> items, BodyArea bodyArea)
+    public void SetItems(List<CharacterCustomizer.CustomItem> items, BodyArea bodyArea)
     {
         foreach(var obj in _spawnedObjects)
             obj.DestroySelf();

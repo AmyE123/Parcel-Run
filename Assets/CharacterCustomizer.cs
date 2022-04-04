@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum BodyArea { Skin, Eyes, Brows, Shirt, Legs, Mouth, None };
 
-public class CharacterCustomizor : MonoBehaviour
+public class CharacterCustomizer : MonoBehaviour
 {
     [System.Serializable]
     public class CustomItem
@@ -33,6 +33,15 @@ public class CharacterCustomizor : MonoBehaviour
 
     [SerializeField]
     private SlidingMenu _colorPickerPanel;
+
+    [SerializeField]
+    private SavedCharacter _saveData;
+
+    [SerializeField]
+    private PlayerVisualApply _editorPlayer;
+
+    [SerializeField]
+    private PlayerVisualApply _titlePlayer;
 
     private Material _currentMat;
 
@@ -114,11 +123,49 @@ public class CharacterCustomizor : MonoBehaviour
     void Start()
     {
         _hueSlider = FindObjectOfType<HueSlider>();
+        _saveData.LoadFromPlayerPrefs();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Activate()
     {
-        
+        _editorPlayer.SetVisuals(_saveData);
+    }
+
+    private void ApplyChangesToSaveData()
+    {
+        _saveData.legsColor = _legsMat.color;
+        _saveData.skinColor = _skinMat.color;
+        _saveData.shirtColor = _shirtMat.color;
+
+        _saveData.eyeName = "";
+        _saveData.browName = "";
+        _saveData.mouthName = "";
+        _saveData.shirtName = "";
+        _saveData.legsName = "";
+
+        foreach (var itm in _items)
+        {
+            if (itm.sceneObject == null || itm.sceneObject.gameObject.activeSelf == false)
+                continue;
+            
+            if (itm.area == BodyArea.Shirt)
+                _saveData.shirtName = itm.sceneObject.name;
+            if (itm.area == BodyArea.Mouth)
+                _saveData.mouthName = itm.sceneObject.name;
+            if (itm.area == BodyArea.Eyes)
+                _saveData.eyeName = itm.sceneObject.name;
+            if (itm.area == BodyArea.Brows)
+                _saveData.browName = itm.sceneObject.name;
+            if (itm.area == BodyArea.Legs)
+                _saveData.legsName = itm.sceneObject.name;
+        }
+
+        _saveData.SaveToPlayerPrefs();
+    }
+
+    public void Finish()
+    {
+        ApplyChangesToSaveData();
+        _titlePlayer.SetVisuals(_saveData);
     }
 }

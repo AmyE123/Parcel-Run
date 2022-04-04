@@ -23,12 +23,12 @@ public class HueSlider : MonoBehaviour
     [SerializeField]
     private Image _outputImage;
 
-    private CharacterCustomizor _customiser;
+    private CharacterCustomizer _customiser;
 
     // Start is called before the first frame update
     void Start()
     {
-        _customiser = FindObjectOfType<CharacterCustomizor>();
+        _customiser = FindObjectOfType<CharacterCustomizer>();
         OnSliderUpdated();
     }
 

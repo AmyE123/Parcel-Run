@@ -24,7 +24,7 @@ public class SelectBodypartItem : MonoBehaviour
     [SerializeField]
     private float _iconDelay = 0.05f;
 
-    private CharacterCustomizor.CustomItem _item;
+    private CharacterCustomizer.CustomItem _item;
 
     public void DestroySelf()
     {
@@ -35,10 +35,10 @@ public class SelectBodypartItem : MonoBehaviour
 
     public void ButtonPress()
     {
-        FindObjectOfType<CharacterCustomizor>().SelectionMade(_item);
+        FindObjectOfType<CharacterCustomizer>().SelectionMade(_item);
     }
 
-    public void Init(CharacterCustomizor.CustomItem itm, int idx)
+    public void Init(CharacterCustomizer.CustomItem itm, int idx)
     {
         _icon.sprite = itm.icon;
         _item = itm;
