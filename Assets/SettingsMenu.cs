@@ -21,6 +21,17 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField]
     private TMP_Text _healthText;
 
+    [SerializeField]
+    private AudioSource _musicSource;
+
+    private float _startVolume;
+
+    public void InitVolume()
+    {
+        _startVolume = _musicSource.volume;
+        _musicSource.volume *= _data.musicVolume;
+    }
+
     public void SfxSliderChanged()
     {
 
@@ -28,7 +39,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void MusicSliderChanged()
     {
-
+        _musicSource.volume = _startVolume * _sliderMusic.value;
     }
 
     public void HealthSliderChanged()

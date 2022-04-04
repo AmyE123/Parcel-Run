@@ -684,6 +684,7 @@ MonoBehaviour:
   _sliderSFX: {fileID: 1852852620}
   _sliderHealth: {fileID: 349597946}
   _healthText: {fileID: 2017156276}
+  _musicSource: {fileID: 840075390}
 --- !u!4 &127857200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3475005027952573716, guid: ebdcd11034b114a0cb1a2535ccbe3685, type: 3}
@@ -3375,6 +3376,7 @@ MonoBehaviour:
   _customCam: {fileID: 176201580}
   _editorPlayer: {fileID: 6796429356331046473}
   _saveData: {fileID: 11400000, guid: b7e75fd47415e594597f7b7df1b0d291, type: 2}
+  _settingsData: {fileID: 11400000, guid: 78c4325a77e25d04e9db415e7a3ac5f5, type: 2}
   _levelSelect: {fileID: 1704505340}
 --- !u!4 &525247205
 Transform:

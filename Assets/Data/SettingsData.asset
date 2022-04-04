@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SettingsData
   m_EditorClassIdentifier: 
   chosenDifficulty: 2
-  musicVolume: 0.8
-  soundVolume: 0.8
+  musicVolume: 0.4
+  soundVolume: 0.4
   difficulties:
   - name: brutal
     startHearts: 1

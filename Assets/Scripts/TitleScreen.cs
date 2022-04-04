@@ -32,12 +32,16 @@ public class TitleScreen : MonoBehaviour
     private SavedCharacter _saveData;
 
     [SerializeField]
+    private SettingsData _settingsData;
+
+    [SerializeField]
     private LevelSelectScreen _levelSelect;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _settingsData.LoadFromPlayerPrefs();
+        _settingsMenu.InitVolume();
     }
 
     // Update is called once per frame
