@@ -51,4 +51,4 @@ MonoBehaviour:
     soldierRecoilTime: 0.5
   deliveryCountToPass: 8
   playerTransport: 0
-  cutscenePrefab: {fileID: 0}
+  cutscenePrefab: {fileID: 4005519728456941715, guid: daa664691ff031f42a2417692502fa4b, type: 3}
