@@ -338,7 +338,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 76771239}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 525247204}
+        m_TargetAssemblyTypeName: TitleScreen, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &76771239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3378,6 +3390,7 @@ MonoBehaviour:
   _saveData: {fileID: 11400000, guid: b7e75fd47415e594597f7b7df1b0d291, type: 2}
   _settingsData: {fileID: 11400000, guid: 78c4325a77e25d04e9db415e7a3ac5f5, type: 2}
   _levelSelect: {fileID: 1704505340}
+  _quitButton: {fileID: 76771237}
 --- !u!4 &525247205
 Transform:
   m_ObjectHideFlags: 0
@@ -4851,14 +4864,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a7ae31fba1d756a498fd057cff215f8b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6138,7 +6151,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level_Tutorial
+          m_StringArgument: Level_Tutorial2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &879455360

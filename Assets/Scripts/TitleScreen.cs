@@ -37,11 +37,17 @@ public class TitleScreen : MonoBehaviour
     [SerializeField]
     private LevelSelectScreen _levelSelect;
 
+    [SerializeField]
+    Transform _quitButton;
+
     // Start is called before the first frame update
     void Start()
     {
         _settingsData.LoadFromPlayerPrefs();
         _settingsMenu.InitVolume();
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+            _quitButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -83,5 +89,10 @@ public class TitleScreen : MonoBehaviour
 
         if (_levelSelect.gameObject.activeSelf)
             _levelSelect.DisableScreen();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
