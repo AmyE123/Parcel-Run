@@ -18,14 +18,19 @@ MonoBehaviour:
     numberToDrop: 5
     point: 3
     prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
-  - name: '2 x PoliceEnemy will spawn after 3 deliveries (spawn: East)'
-    packageRequirement: 3
+  - name: '2 x PoliceEnemy will spawn after 1 deliveries (spawn: East)'
+    packageRequirement: 1
     numberToDrop: 2
     point: 1
     prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
-  - name: '3 x PoliceEnemy will spawn after 5 deliveries (spawn: North)'
-    packageRequirement: 5
-    numberToDrop: 3
+  - name: '2 x PoliceEnemy will spawn after 2 deliveries (spawn: North)'
+    packageRequirement: 2
+    numberToDrop: 2
+    point: 0
+    prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
+  - name: '2 x PoliceEnemy will spawn after 3 deliveries (spawn: North)'
+    packageRequirement: 3
+    numberToDrop: 2
     point: 0
     prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
   balanceInfo:
@@ -44,6 +49,6 @@ MonoBehaviour:
     soldierAimTime: 1.5
     soldierLockTime: 0.5
     soldierRecoilTime: 0.5
-  deliveryCountToPass: 6
+  deliveryCountToPass: 4
   playerTransport: 0
   cutscenePrefab: {fileID: 4005519728456941715, guid: 812002670838b1b4e94c243b476a5e5a, type: 3}

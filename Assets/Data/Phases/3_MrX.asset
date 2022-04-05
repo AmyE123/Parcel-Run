@@ -18,15 +18,15 @@ MonoBehaviour:
     numberToDrop: 1
     point: 3
     prefabToSpawn: {fileID: 8146629885039606459, guid: 23b722125e43c37408ce932be2ce5c44, type: 3}
-  - name: '2 x SoldierEnemy will spawn after 3 deliveries (spawn: East)'
+  - name: '3 x PoliceEnemy will spawn after 3 deliveries (spawn: East)'
     packageRequirement: 3
-    numberToDrop: 2
-    point: 1
-    prefabToSpawn: {fileID: 8146629885039606459, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
-  - name: '3 x SoldierEnemy will spawn after 5 deliveries (spawn: North)'
-    packageRequirement: 5
     numberToDrop: 3
-    point: 0
+    point: 1
+    prefabToSpawn: {fileID: 8146629885039606459, guid: efa631393e8074a03ad962c630b1ec1b, type: 3}
+  - name: '3 x SoldierEnemy will spawn after 3 deliveries (spawn: West)'
+    packageRequirement: 3
+    numberToDrop: 3
+    point: 3
     prefabToSpawn: {fileID: 8146629885039606459, guid: 6b955c48b97426346abb6377ed5092e1, type: 3}
   balanceInfo:
     policeDetectRadius: 15
@@ -36,7 +36,7 @@ MonoBehaviour:
     policeDiveDistance: 4
     policeDiveSpeed: 10
     policeDiveRecoveryTime: 0.5
-    soliderDetectRadius: 12
+    soliderDetectRadius: 15
     soliderVisionRange: 20
     soliderTopSpeed: 6
     soliderAcceleration: 15
@@ -44,6 +44,6 @@ MonoBehaviour:
     soldierAimTime: 1.5
     soldierLockTime: 0.5
     soldierRecoilTime: 0.5
-  deliveryCountToPass: 6
+  deliveryCountToPass: 4
   playerTransport: 0
   cutscenePrefab: {fileID: 4005519728456941715, guid: e31b0ab5259685746a7496a2ba4d15b0, type: 3}
