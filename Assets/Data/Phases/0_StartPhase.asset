@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b4fad6c2b260f4f9ce635cd0113e39, type: 3}
+  m_Name: 0_StartPhase
+  m_EditorClassIdentifier: 
+  enemyDrops: []
+  balanceInfo:
+    policeDetectRadius: 10
+    policeVisionRange: 20
+    policeTopSpeed: 5
+    policeAcceleration: 15
+    policeDiveDistance: 3
+    policeDiveSpeed: 8
+    policeDiveRecoveryTime: 1
+    soliderDetectRadius: 12
+    soliderVisionRange: 20
+    soliderTopSpeed: 6
+    soliderAcceleration: 15
+    soliderShootDistance: 8
+    soldierAimTime: 1.5
+    soldierLockTime: 0.5
+    soldierRecoilTime: 0.5
+  deliveryCountToPass: 1
+  playerTransport: 0
+  cutscenePrefab: {fileID: 0}

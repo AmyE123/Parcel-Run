@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: d8be74e4b317ea348acf9eea8b8b2022
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _ToonRamp: {fileID: 2800000, guid: ea7b5d6aeca5cf247a3c5e2aa54950b4, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
